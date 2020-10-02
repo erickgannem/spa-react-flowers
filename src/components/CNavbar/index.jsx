@@ -5,28 +5,28 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 
 function CNavbar(props) {
-  const { bg } = props;
+  const { bg, name } = props;
   return (
     <Navbar bg={bg} style={{ justifyContent: 'space-between' }} expand="md">
-      <Navbar.Brand href="#home">FlowersSPA</Navbar.Brand>
+      <Navbar.Brand href="#home">{name}</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
       <Navbar.Collapse style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
         <Nav>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Features</Nav.Link>
+            <Nav.Link className="nav-link" href="#">Ofertas</Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Enterprise</Nav.Link>
+            <Nav.Link className="nav-link" href="#">Macetas</Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Support</Nav.Link>
+            <Nav.Link className="nav-link" href="#">Accesorios</Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Pricing</Nav.Link>
+            <Nav.Link className="nav-link" href="#">Herramientas</Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Button variant="outline-primary">Sign up</Button>
+            <Button variant="outline-primary">Entrar</Button>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
@@ -36,8 +36,10 @@ function CNavbar(props) {
 }
 CNavbar.defaultProps = {
   bg: 'light',
+  name: 'Tienda',
 };
 CNavbar.propTypes = {
   bg: PropTypes.string,
+  name: PropTypes.string,
 };
 export default CNavbar;
