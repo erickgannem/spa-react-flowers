@@ -13,36 +13,34 @@ function CNavbar(props) {
   return (
     <>
       <Navbar bg={bg} style={{ justifyContent: 'space-between' }} expand="md">
-        <Navbar.Brand href="#home">
-          <Link href="/">
-            {name}
-          </Link>
+        <Navbar.Brand as={Link} href="/">
+          {name}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
           <Nav>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" href="#">
-                <Link href="/ofertas">Ofertas</Link>
+              <Nav.Link className="nav-link" as={Link} href="/ofertas">
+                Ofertas
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" href="#">
-                <Link href="/macetas">Macetas</Link>
+              <Nav.Link className="nav-link" as={Link} href="/macetas">
+                Macetas
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" href="#"><Link href="/accesorios">Accesorios</Link></Nav.Link>
+              <Nav.Link className="nav-link" as={Link} href="/accesorios">
+                Accesorios
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" href="#"><Link href="/herramientas">Herramientas</Link></Nav.Link>
+              <Nav.Link className="nav-link" as={Link} href="/herramientas">Herramientas</Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-              <Button variant="outline-primary">
-                <Link href="/entrar">
-                  Entrar
-                </Link>
+              <Button variant="outline-primary" as={Link} href="/entrar">
+                Entrar
               </Button>
 
             </Nav.Item>
