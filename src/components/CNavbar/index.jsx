@@ -4,6 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 
+import { Link, Route } from 'wouter';
+
 function CNavbar(props) {
   const { bg, name } = props;
   return (
@@ -14,16 +16,20 @@ function CNavbar(props) {
       <Navbar.Collapse style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
         <Nav>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Ofertas</Nav.Link>
+            <Nav.Link className="nav-link" href="#">
+              <Link href="/ofertas">Ofertas</Link>
+            </Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Macetas</Nav.Link>
+            <Nav.Link className="nav-link" href="#">
+              <Link href="/macetas">Macetas</Link>
+            </Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Accesorios</Nav.Link>
+            <Nav.Link className="nav-link" href="#"><Link href="/accesorios">Accesorios</Link></Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
-            <Nav.Link className="nav-link" href="#">Herramientas</Nav.Link>
+            <Nav.Link className="nav-link" href="#"><Link href="/herramientas">Herramientas</Link></Nav.Link>
           </Nav.Item>
           <Nav.Item className="p-2">
             <Button variant="outline-primary">Entrar</Button>
