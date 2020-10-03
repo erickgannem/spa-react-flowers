@@ -21,7 +21,7 @@ function CItem(props) {
         {' '}
         {fromDate}
       </Badge>
-      <Card.Img src={image} fluid="true" />
+      <Card.Img src={image} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>

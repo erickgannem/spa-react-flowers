@@ -6,8 +6,6 @@ import Button from 'react-bootstrap/Button';
 
 import { Link } from 'wouter';
 
-import Routes from '../Routes';
-
 function CNavbar(props) {
   const { bg, name } = props;
   return (
@@ -48,7 +46,6 @@ function CNavbar(props) {
         </Navbar.Collapse>
 
       </Navbar>
-      <Routes />
     </>
   );
 }
