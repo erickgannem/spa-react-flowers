@@ -8,11 +8,25 @@ import Col from 'react-bootstrap/Col';
 import './index.css';
 
 function LoginPage() {
-  const [, setUsername] = useState('');
-  const [, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
+  const getUserData = async (payload) => {
+    const init = {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    };
+    try {
+      const response = await fetch('http://lapalabra.free.fr/api/login_check/', init);
+      const data = await response.json();
+      return data.token;
+    } catch (error) {
+      return error;
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    getUserData({ username, password });
   };
 
   return (
