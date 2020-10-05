@@ -4,43 +4,30 @@ import './index.css';
 import CNavbar from '../CNavbar';
 import Routes from '../Routes';
 import AuthContext from '../../context/AuthContext';
+import authReducer from '../../reducers/authReducer';
 
-const INITIAL_STATE = {
+const INITIAL_AUTH_STATE = {
   user: {},
   token: '',
   isAuthenticated: false,
 };
-function authReducer(state, action) {
-  switch (action.type) {
-    case 'SIGN_IN':
-      return {
-        ...state,
-        user: action.payload.user,
-        token: action.payload.token,
-        isAuthenticated: !!Object.keys(action.payload.user).length,
-      };
-    case 'SIGN_OUT':
-      return {
-        ...state,
-        user: {},
-        token: '',
-        isAuthenticated: false,
-      };
-    default:
-      return state;
+
+function grabAuthItems(authDispatch) {
+  const token = localStorage.getItem('@jdm_user_token');
+  const currentUser = JSON.parse(localStorage.getItem('@jdm_current_user'));
+
+  if (token) {
+    authDispatch({ type: 'SIGN_IN', payload: { user: currentUser, token } });
   }
 }
 
 function App() {
-  const [authState, authDispatch] = React.useReducer(authReducer, INITIAL_STATE);
-  React.useEffect(() => {
-    const token = localStorage.getItem('@jdm_user_token');
-    const currentUser = localStorage.getItem('@jdm_current_user');
+  const [authState, authDispatch] = React.useReducer(authReducer, INITIAL_AUTH_STATE);
 
-    if (token) {
-      authDispatch({ type: 'SIGN_IN', payload: { user: JSON.parse(currentUser), token } });
-    }
+  React.useEffect(() => {
+    grabAuthItems(authDispatch);
   }, []);
+
   return (
     <>
       <AuthContext.Provider value={{ authState, authDispatch }}>
