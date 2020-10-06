@@ -25,16 +25,16 @@ function LoginPage() {
         body: JSON.stringify({ username, password }),
       });
       const { data } = await response.json();
-      const { token, json_payload } = data;
+      const { token, json_payload: jsonPayload } = data;
 
-      if (json_payload.username) {
+      if (jsonPayload.username) {
         if (token) {
           localStorage.setItem('@jdm_user_token', token);
-          localStorage.setItem('@jdm_current_user', JSON.stringify({ username: json_payload.username }));
+          localStorage.setItem('@jdm_current_user', JSON.stringify({ username: jsonPayload.username }));
           authContext.authDispatch({
             type: 'SIGN_IN',
             payload: {
-              user: { username: json_payload.username },
+              user: { username: jsonPayload.username },
               token,
             },
           });
