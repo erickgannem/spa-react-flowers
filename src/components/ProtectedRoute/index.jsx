@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'wouter';
 
+import checkAuthentication from '../../services/checkAuthentication';
+
 function ProtectedRoute({ component: Component }) {
-  const isAuthenticated = !!localStorage.getItem('@jdm_user_token');
+  const isAuthenticated = checkAuthentication();
   return (
     isAuthenticated ? (<Component />) : (<Redirect href="/entrar" />)
   );

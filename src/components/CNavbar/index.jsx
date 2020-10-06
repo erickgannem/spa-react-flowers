@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 
 import { Link } from 'wouter';
 
+import checkAuthentication from '../../services/checkAuthentication';
+
 function CNavbar(props) {
   const { bg, name } = props;
   return (
@@ -37,10 +39,9 @@ function CNavbar(props) {
               <Nav.Link className="nav-link" as={Link} href="/herramientas">Herramientas</Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-              <Button variant="outline-primary" as={Link} href="/entrar">
-                Entrar
+              <Button variant={checkAuthentication() ? 'success' : 'primary'} as={Link} href={checkAuthentication() ? '/panel' : '/entrar'}>
+                {checkAuthentication() ? 'Panel' : 'Entrar'}
               </Button>
-
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

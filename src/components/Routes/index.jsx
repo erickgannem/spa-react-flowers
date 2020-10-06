@@ -9,8 +9,8 @@ import ProtectedRoute from '../ProtectedRoute';
 function Routes() {
   return (
     <Switch>
-      <Route default path="/" component={MainPage} />
-      <Route path="/dashboard" component={() => <ProtectedRoute component={Dashboard} />} />
+      <Route path="/" component={MainPage} />
+      <Route path="/panel" component={() => <ProtectedRoute component={Dashboard} />} />
       <Route path="/ofertas" component={() => <div><h2>ofertas</h2></div>} />
       <Route path="/macetas" component={() => <div><h2>macetas</h2></div>} />
       <Route path="/accesorios" component={() => <div><h2>accesorios</h2></div>} />

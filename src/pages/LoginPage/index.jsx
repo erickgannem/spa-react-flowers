@@ -12,7 +12,7 @@ function LoginPage() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
 
   const authContext = React.useContext(AuthContext);
 
@@ -38,7 +38,7 @@ function LoginPage() {
               token,
             },
           });
-          setLocation('/dashboard');
+          setLocation('/panel');
         } else {
           throw new Error('Username or password incorrect');
         }
