@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
 
 import './index.css';
@@ -10,6 +11,8 @@ import './index.css';
 function LoginPage() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const [location, setLocation] = useLocation();
 
   const authContext = React.useContext(AuthContext);
 
@@ -35,6 +38,7 @@ function LoginPage() {
               token,
             },
           });
+          setLocation('/dashboard');
         } else {
           throw new Error('Username or password incorrect');
         }
