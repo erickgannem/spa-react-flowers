@@ -9,53 +9,22 @@ import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
 import FeedbackContext from '../../context/FeedbackContext';
 
+import signInUser from '../../actions/signInUser';
+
 import './index.css';
 
-function LoginPage() {
+function SignIn() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const [, setLocation] = useLocation();
 
-  const authContext = React.useContext(AuthContext);
+  const { authDispatch } = React.useContext(AuthContext);
   const { feedbackState, feedbackDispatch } = React.useContext(FeedbackContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      feedbackDispatch({ type: 'SET_LOADING' });
-      const response = await fetch('http://lapalabra.free.fr/api/login_check/', {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-      });
-      const { data } = await response.json();
-      const { token, json_payload: jsonPayload } = data;
-
-      if (jsonPayload.username) {
-        if (token) {
-          localStorage.setItem('@jdm_user_token', token);
-          localStorage.setItem('@jdm_current_user', JSON.stringify({ username: jsonPayload.username }));
-          authContext.authDispatch({
-            type: 'SIGN_IN',
-            payload: {
-              user: { username: jsonPayload.username },
-              token,
-            },
-          });
-          feedbackDispatch({ type: 'UNSET_LOADING' });
-          setLocation('/panel');
-        } else {
-          feedbackDispatch({ type: 'UNSET_LOADING' });
-          throw new Error('Nombre de usuario o contraseña incorrecta');
-        }
-      } else {
-        feedbackDispatch({ type: 'UNSET_LOADING' });
-        throw new Error('No se permiten campos vacios');
-      }
-    } catch (err) {
-      feedbackDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
-    }
+    await signInUser({ username, password }, { authDispatch, feedbackDispatch }, setLocation);
   };
 
   return (
@@ -91,4 +60,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignIn;

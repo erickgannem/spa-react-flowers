@@ -1,21 +1,21 @@
 import React from 'react';
 import { Route, Switch } from 'wouter';
 
-import MainPage from '../../pages/MainPage';
-import LoginPage from '../../pages/LoginPage';
+import Catalog from '../../pages/Catalog';
+import SignIn from '../../pages/SignIn';
 import Dashboard from '../../pages/Dashboard';
 import ProtectedRoute from '../ProtectedRoute';
 
 function Routes() {
   return (
     <Switch>
-      <Route path="/" component={MainPage} />
-      <Route path="/panel" component={() => <ProtectedRoute component={Dashboard} />} />
-      <Route path="/ofertas" component={() => <div><h2>ofertas</h2></div>} />
-      <Route path="/macetas" component={() => <div><h2>macetas</h2></div>} />
-      <Route path="/accesorios" component={() => <div><h2>accesorios</h2></div>} />
-      <Route path="/herramientas" component={() => <div><h2>herramientas</h2></div>} />
-      <Route path="/entrar" component={LoginPage} />
+      <Route path="/" component={Catalog} />
+      <Route path="/Panel" component={() => <ProtectedRoute component={Dashboard} />} />
+      <Route path="/Ofertas" component={() => <div><h2>Pagina de Ofertas</h2></div>} />
+      <Route path="/Macetas" component={() => <div><h2>Pagina de Macetas</h2></div>} />
+      <Route path="/Accesorios" component={() => <div><h2>Pagina de Accesorios</h2></div>} />
+      <Route path="/Herramientas" component={() => <div><h2>Pagina de Herramientas</h2></div>} />
+      <Route path="/Entrar" component={SignIn} />
     </Switch>
   );
 }

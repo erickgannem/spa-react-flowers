@@ -1,7 +1,9 @@
 import React from 'react';
 import './index.css';
 
-import CNavbar from '../CNavbar';
+import Container from 'react-bootstrap/Container';
+
+import Navbar from '../Navbar';
 import Routes from '../Routes';
 
 import AuthContext from '../../context/AuthContext';
@@ -36,10 +38,11 @@ function App() {
     <>
       <AuthContext.Provider value={{ authState, authDispatch }}>
         <FeedbackContext.Provider value={{ feedbackState, feedbackDispatch }}>
-          <CNavbar name="El Jardin de Mamá" bg="light" />
-          <Routes />
+          <Navbar name="El Jardin de Mamá" />
+          <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
+            <Routes />
+          </Container>
         </FeedbackContext.Provider>
-
       </AuthContext.Provider>
     </>
 

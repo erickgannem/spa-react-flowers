@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
+import { Card, Badge } from 'react-bootstrap';
 
-function CItem(props) {
+function CatalogItem(props) {
   const {
-    name, description, price, image, fromDate,
+    name, description, price, image, available,
   } = props;
   return (
     <Card text="dark" className="m-3">
@@ -17,9 +16,7 @@ function CItem(props) {
           position: 'absolute', right: -10, top: -10, padding: 7,
         }}
       >
-        A partir del:
-        {' '}
-        {fromDate}
+        {available}
       </Badge>
       <Card.Img src={image} />
       <Card.Body>
@@ -37,19 +34,19 @@ function CItem(props) {
   );
 }
 
-CItem.defaultProps = {
+CatalogItem.defaultProps = {
   name: 'Planta',
   description: 'Breve descripción de esta planta...',
   price: 0,
-  image: 'https://i.etsystatic.com/17013953/r/il/5ff4bb/1463928323/il_570xN.1463928323_qqar.jpg',
-  fromDate: '23/09',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcROJGo_BDmE1BQXej-UemTXxZG6RkDsA95ZnA&usqp=CAU',
+  available: '23/09',
 };
-CItem.propTypes = {
+CatalogItem.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
   image: PropTypes.string,
-  fromDate: PropTypes.string,
+  available: PropTypes.string,
 };
 
-export default CItem;
+export default CatalogItem;
