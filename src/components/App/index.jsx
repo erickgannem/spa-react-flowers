@@ -19,7 +19,7 @@ const INITIAL_AUTH_STATE = {
 };
 const INITIAL_FEEDBACK_STATE = {
   isLoading: false,
-  error: {},
+  error: { message: '' },
 };
 
 function App() {

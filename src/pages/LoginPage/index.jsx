@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
+
 import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
 import FeedbackContext from '../../context/FeedbackContext';
@@ -16,13 +18,13 @@ function LoginPage() {
   const [, setLocation] = useLocation();
 
   const authContext = React.useContext(AuthContext);
-  const feedbackContext = React.useContext(FeedbackContext);
+  const { feedbackState, feedbackDispatch } = React.useContext(FeedbackContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      feedbackContext.feedbackDispatch({ type: 'SET_LOADING' });
+      feedbackDispatch({ type: 'SET_LOADING' });
       const response = await fetch('http://lapalabra.free.fr/api/login_check/', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
@@ -41,24 +43,32 @@ function LoginPage() {
               token,
             },
           });
-          feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
+          feedbackDispatch({ type: 'UNSET_LOADING' });
           setLocation('/panel');
         } else {
-          feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
-          throw new Error('Username or password incorrect');
+          feedbackDispatch({ type: 'UNSET_LOADING' });
+          throw new Error('Nombre de usuario o contraseña incorrecta');
         }
       } else {
-        feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
-        throw new Error('Username field cannot be empty');
+        feedbackDispatch({ type: 'UNSET_LOADING' });
+        throw new Error('No se permiten campos vacios');
       }
     } catch (err) {
-      feedbackContext.feedbackDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+      feedbackDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
     }
   };
 
   return (
     <Row noGutters className="justify-content-center align-items-center" style={{ marginTop: 60 }}>
       <Col lg="auto" sm="auto" xs="auto">
+        {
+          feedbackState.error.message && (
+          <Alert variant="danger" className="text-center">
+            {feedbackState.error.message}
+          </Alert>
+          )
+        }
+
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="username">
             <Form.Label>Usuario</Form.Label>
