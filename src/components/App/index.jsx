@@ -8,6 +8,7 @@ import AuthContext from '../../context/AuthContext';
 import FeedbackContext from '../../context/FeedbackContext';
 
 import authReducer from '../../reducers/authReducer';
+import feedbackReducer from '../../reducers/feedbackReducer';
 
 import grabAuthItems from '../../actions/grabAuthItems';
 
@@ -23,7 +24,9 @@ const INITIAL_FEEDBACK_STATE = {
 
 function App() {
   const [authState, authDispatch] = React.useReducer(authReducer, INITIAL_AUTH_STATE);
-  const [feedbackState, feedbackDispatch] = React.useReducer(() => {}, INITIAL_FEEDBACK_STATE);
+  const [feedbackState, feedbackDispatch] = React.useReducer(
+    feedbackReducer, INITIAL_FEEDBACK_STATE,
+  );
 
   React.useEffect(() => {
     grabAuthItems(authDispatch);

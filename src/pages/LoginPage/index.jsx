@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
+import FeedbackContext from '../../context/FeedbackContext';
 
 import './index.css';
 
@@ -15,11 +16,13 @@ function LoginPage() {
   const [, setLocation] = useLocation();
 
   const authContext = React.useContext(AuthContext);
+  const feedbackContext = React.useContext(FeedbackContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      feedbackContext.feedbackDispatch({ type: 'SET_LOADING' });
       const response = await fetch('http://lapalabra.free.fr/api/login_check/', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
@@ -38,15 +41,18 @@ function LoginPage() {
               token,
             },
           });
+          feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
           setLocation('/panel');
         } else {
+          feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
           throw new Error('Username or password incorrect');
         }
       } else {
+        feedbackContext.feedbackDispatch({ type: 'UNSET_LOADING' });
         throw new Error('Username field cannot be empty');
       }
     } catch (err) {
-      console.log(err);
+      feedbackContext.feedbackDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
     }
   };
 
