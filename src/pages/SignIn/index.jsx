@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Alert from 'react-bootstrap/Alert';
+
+import {
+  Button, Form, Row, Col, Alert, Spinner,
+} from 'react-bootstrap';
 
 import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
@@ -48,7 +47,11 @@ function SignIn() {
             <Form.Control type="password" size="lg" onChange={(e) => setPassword(e.target.value)} />
           </Form.Group>
           <Form.Group controlId="controls" className="d-flex flex-column">
-            <Button variant="success" type="submit">Entrar</Button>
+            <Button variant="success" type="submit">
+              Entrar
+              {' '}
+              {feedbackState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
+            </Button>
             <Form.Text className="text-center">¿Olvidó su contraseña?</Form.Text>
 
           </Form.Group>
