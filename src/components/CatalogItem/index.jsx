@@ -16,7 +16,7 @@ function CatalogItem(props) {
           position: 'absolute', right: -10, top: -10, padding: 7,
         }}
       >
-        {available}
+        {available ? 'Disponible' : 'No Disponible'}
       </Badge>
       <Card.Img src={image} />
       <Card.Body>
@@ -39,14 +39,14 @@ CatalogItem.defaultProps = {
   description: 'Breve descripción de esta planta...',
   price: 0,
   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcROJGo_BDmE1BQXej-UemTXxZG6RkDsA95ZnA&usqp=CAU',
-  available: '23/09',
+  available: false,
 };
 CatalogItem.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
   image: PropTypes.string,
-  available: PropTypes.string,
+  available: PropTypes.bool,
 };
 
 export default CatalogItem;
