@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CardDeck from 'react-bootstrap/CardDeck';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+  Col, Row, Pagination, PageItem,
+} from 'react-bootstrap';
 
 import CatalogItem from '../../components/CatalogItem';
 
@@ -32,54 +32,69 @@ const DUMMY_ITEMS = [
   { name: 'Planta #22', available: false },
 ];
 
-const calculatePages = (itemsArr) => {
+const totalPages = (itemsArr) => {
   const itemsCount = itemsArr.length;
   return Math.ceil(itemsCount / 3);
 };
 
-const createPages = (quantity) => {
-  for (let i = 0; i < quantity; i += 1) {
+const generateDataSet = (totalPages, itemsArr) => {
 
-  }
 };
 
 function Catalog() {
-  return (
-    <Row noGutters className="justify-content-center align-items-center">
-      <Col xl={3} lg={3} md={3}>
-        {/* {
-            DUMMY_ITEMS.map((item) => (
-              <CatalogItem
-                key={item.name}
-                name={item.name}
-                available={item.available}
-              />
-            ))
-          } */}
-        <CatalogItem
-          key={1}
-          name="Planta #1"
-          available
-        />
-      </Col>
-      <Col xl={3} lg={3} md={3}>
-        <CatalogItem
-          key={2}
-          name="Planta #2"
-          available
-        />
-        <Col />
-      </Col>
-      <Col xl={3} lg={3} md={3}>
-        <CatalogItem
-          key={3}
-          name="Planta #3"
-          available
-        />
-        <Col />
-      </Col>
-    </Row>
+  const [activePage, setActivaPage] = React.useState(1);
 
+  const setPaginationBoxes = React.useCallback((quantity) => {
+    const items = [];
+    for (let number = 1; number <= quantity; number += 1) {
+      items.push(
+        <PageItem key={number} active={number === activePage} onClick={() => setActivaPage(number)}>
+          {number}
+        </PageItem>,
+      );
+    }
+    return items;
+  }, [activePage]);
+
+  const items = setPaginationBoxes(totalPages(DUMMY_ITEMS));
+
+  return (
+    <>
+      <Row noGutters className="justify-content-center align-items-center">
+        {generateDataSet(totalPages(DUMMY_ITEMS), DUMMY_ITEMS)}
+        {/* <Col xl={3} lg={3} md={3}>
+          <CatalogItem
+            key={1}
+            name="Planta #1"
+            available
+          />
+        </Col>
+        <Col xl={3} lg={3} md={3}>
+          <CatalogItem
+            key={2}
+            name="Planta #2"
+            available
+          />
+          <Col />
+        </Col>
+        <Col xl={3} lg={3} md={3}>
+          <CatalogItem
+            key={3}
+            name="Planta #3"
+            available
+          />
+        </Col> */}
+      </Row>
+      <Row noGutters className="justify-content-center align-items-center">
+        <Col xl={3} lg={3} md={3}>
+          <Pagination size="lg" className="justify-content-center align-items-center">
+            <Pagination.Prev onClick={() => activePage > 1 && setActivaPage(activePage - 1)} />
+            {items}
+            <Pagination.Next onClick={() => activePage < items.length && setActivaPage(activePage + 1)} />
+          </Pagination>
+        </Col>
+      </Row>
+    </>
   );
 }
 
