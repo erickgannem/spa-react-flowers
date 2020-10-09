@@ -37,12 +37,29 @@ const totalPages = (itemsArr) => {
   return Math.ceil(itemsCount / 3);
 };
 
-const generateDataSet = (totalPages, itemsArr) => {
-
-};
-
 function Catalog() {
   const [activePage, setActivePage] = React.useState(1);
+  const [articles, setArticles] = React.useState({});
+
+  React.useEffect(() => {
+    const fetchItems = async () => {
+      const headers = new Headers({
+        authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,
+      });
+      try {
+        const response = await fetch('http://lapalabra.free.fr/api/articles/', {
+          method: 'GET',
+          headers,
+        });
+        const { data } = await response.json();
+
+        setArticles(data.articles);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchItems();
+  }, []);
 
   const setPaginationBoxes = React.useCallback((quantity) => {
     const items = [];
@@ -61,33 +78,17 @@ function Catalog() {
   return (
     <>
       <Row noGutters className="justify-content-center align-items-center">
-        {generateDataSet(totalPages(DUMMY_ITEMS), DUMMY_ITEMS)}
-        {/* <Col xl={3} lg={3} md={3}>
+        <Col xl={3} lg={3} md={3}>
           <CatalogItem
             key={1}
             name="Planta #1"
             available
           />
         </Col>
-        <Col xl={3} lg={3} md={3}>
-          <CatalogItem
-            key={2}
-            name="Planta #2"
-            available
-          />
-          <Col />
-        </Col>
-        <Col xl={3} lg={3} md={3}>
-          <CatalogItem
-            key={3}
-            name="Planta #3"
-            available
-          />
-        </Col> */}
       </Row>
       <Row noGutters className="justify-content-center align-items-center">
         <Col xl={3} lg={3} md={3}>
-          <Pagination size="lg" className="justify-content-center align-items-center">
+          <Pagination size="sm" className="justify-content-center align-items-center">
             <Pagination.Prev onClick={() => activePage > 1 && setActivePage(activePage - 1)} />
             {items}
             <Pagination.Next onClick={() => activePage < items.length && setActivePage(activePage + 1)} />
