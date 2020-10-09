@@ -42,13 +42,13 @@ const generateDataSet = (totalPages, itemsArr) => {
 };
 
 function Catalog() {
-  const [activePage, setActivaPage] = React.useState(1);
+  const [activePage, setActivePage] = React.useState(1);
 
   const setPaginationBoxes = React.useCallback((quantity) => {
     const items = [];
     for (let number = 1; number <= quantity; number += 1) {
       items.push(
-        <PageItem key={number} active={number === activePage} onClick={() => setActivaPage(number)}>
+        <PageItem key={number} active={number === activePage} onClick={() => setActivePage(number)}>
           {number}
         </PageItem>,
       );
@@ -88,9 +88,9 @@ function Catalog() {
       <Row noGutters className="justify-content-center align-items-center">
         <Col xl={3} lg={3} md={3}>
           <Pagination size="lg" className="justify-content-center align-items-center">
-            <Pagination.Prev onClick={() => activePage > 1 && setActivaPage(activePage - 1)} />
+            <Pagination.Prev onClick={() => activePage > 1 && setActivePage(activePage - 1)} />
             {items}
-            <Pagination.Next onClick={() => activePage < items.length && setActivaPage(activePage + 1)} />
+            <Pagination.Next onClick={() => activePage < items.length && setActivePage(activePage + 1)} />
           </Pagination>
         </Col>
       </Row>
