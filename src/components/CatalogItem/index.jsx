@@ -8,7 +8,7 @@ function CatalogItem(props) {
     name, description, price, image, available,
   } = props;
   return (
-    <Card text="dark" className="m-3">
+    <Card text="dark" className="m-3" style={{ minHeight: 425 }}>
       <Badge
         variant="primary"
         pill
@@ -16,7 +16,7 @@ function CatalogItem(props) {
           position: 'absolute', right: -10, top: -10, padding: 7,
         }}
       >
-        {available ? 'Disponible' : 'No Disponible'}
+        {available === 'on' ? 'Disponible' : 'No Disponible'}
       </Badge>
       <Card.Img src={image} />
       <Card.Body>
@@ -44,9 +44,9 @@ CatalogItem.defaultProps = {
 CatalogItem.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.string,
   image: PropTypes.string,
-  available: PropTypes.bool,
+  available: PropTypes.string,
 };
 
 export default CatalogItem;

@@ -1,4 +1,5 @@
 export default function feedbackReducer(state, action) {
+  console.log('feedbackreducer');
   switch (action.type) {
     case 'SET_LOADING':
       return {
