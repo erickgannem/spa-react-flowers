@@ -6,7 +6,7 @@ import {
 
 import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
-import FeedbackContext from '../../context/FeedbackContext';
+import FeedbackContext from '../../context/LoadingContext';
 
 import signInUser from '../../actions/signInUser';
 

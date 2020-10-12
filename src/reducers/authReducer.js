@@ -1,5 +1,4 @@
 export default function authReducer(state, action) {
-  console.log('authreducer');
   switch (action.type) {
     case 'SIGN_IN':
       return {

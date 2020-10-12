@@ -7,7 +7,7 @@ import {
 import Articles from '../../components/Articles';
 import Loading from '../../components/Loading';
 import ArticlesContext from '../../context/ArticlesContext';
-import FeedbackContext from '../../context/FeedbackContext';
+import LoadingContext from '../../context/LoadingContext';
 
 const totalPages = (itemsArr) => {
   const itemsCount = itemsArr ? itemsArr.length : 1;
@@ -15,9 +15,9 @@ const totalPages = (itemsArr) => {
 };
 function Catalog() {
   const [activePage, setActivePage] = React.useState(1);
-  // const [articlesPerPage, setArticlesPerPage] = React.useState(3);
+  const [articlesPerPage, setArticlesPerPage] = React.useState(3);
   const { articlesState } = React.useContext(ArticlesContext);
-  const { feedbackState } = React.useContext(FeedbackContext);
+  const { loadingState } = React.useContext(LoadingContext);
 
   const setPaginationBoxes = React.useCallback((quantity) => {
     const items = [];
@@ -30,29 +30,27 @@ function Catalog() {
     }
     return items;
   }, [activePage]);
-  const items = setPaginationBoxes(totalPages());
+  const items = setPaginationBoxes(totalPages(articlesState.articles));
   const handlePageLeft = () => activePage > 1 && setActivePage(activePage - 1);
   const handlePageRight = () => (activePage < items.length) && setActivePage(activePage + 1);
 
   // Get current article
-  // const indexOfLastArticle = activePage * articlesPerPage;
-  // const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  // const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+  const indexOfLastArticle = activePage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articlesState.articles.slice(indexOfFirstArticle, indexOfLastArticle);
   return (
     <>
       <Row noGutters className="justify-content-center align-items-center">
-        <Articles articles={articlesState.articles} />
-      </Row>
-
-      <Row noGutters className="justify-content-center align-items-center">
         <Col xl={3} lg={3} md={3}>
-
-          <Pagination size="sm" className="justify-content-center align-items-center">
+          <Pagination size="md" className="justify-content-center align-items-center">
             <Pagination.Prev onClick={handlePageLeft} />
             {items}
             <Pagination.Next onClick={handlePageRight} />
           </Pagination>
         </Col>
+      </Row>
+      <Row noGutters className="justify-content-center align-items-center">
+        {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
       </Row>
     </>
   );
