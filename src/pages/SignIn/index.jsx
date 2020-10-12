@@ -6,7 +6,8 @@ import {
 
 import { useLocation } from 'wouter';
 import AuthContext from '../../context/AuthContext';
-import FeedbackContext from '../../context/LoadingContext';
+import LoadingContext from '../../context/LoadingContext';
+import ErrorContext from '../../context/ErrorContext';
 
 import signInUser from '../../actions/signInUser';
 
@@ -19,20 +20,22 @@ function SignIn() {
   const [, setLocation] = useLocation();
 
   const { authDispatch } = React.useContext(AuthContext);
-  const { feedbackState, feedbackDispatch } = React.useContext(FeedbackContext);
+  const { loadingState, loadingDispatch } = React.useContext(LoadingContext);
+  const { errorState, errorDispatch } = React.useContext(ErrorContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signInUser({ username, password }, { authDispatch, feedbackDispatch }, setLocation);
+    await signInUser({ username, password },
+      { authDispatch, loadingDispatch, errorDispatch }, { errorState }, setLocation);
   };
 
   return (
     <Row noGutters className="justify-content-center align-items-center" style={{ marginTop: 60 }}>
       <Col lg="auto" sm="auto" xs="auto">
         {
-          feedbackState.error.message && (
+          errorState.error.message && (
           <Alert variant="danger" className="text-center">
-            {feedbackState.error.message}
+            {errorState.error.message}
           </Alert>
           )
         }
@@ -50,7 +53,7 @@ function SignIn() {
             <Button variant="success" type="submit">
               Entrar
               {' '}
-              {feedbackState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
+              {loadingState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
             </Button>
             <Form.Text className="text-center">¿Olvidó su contraseña?</Form.Text>
 

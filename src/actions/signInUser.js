@@ -1,8 +1,9 @@
-async function signInUser(logInData, dispatchers, setLocation) {
+async function signInUser(logInData, dispatchers, states, setLocation) {
   const { username, password } = logInData;
-  const { authDispatch, feedbackDispatch } = dispatchers;
+  const { authDispatch, errorDispatch, loadingDispatch } = dispatchers;
+  const { errorState } = states;
   try {
-    feedbackDispatch({ type: 'SET_LOADING' });
+    loadingDispatch({ type: 'SET_LOADING' });
     const response = await fetch('http://lapalabra.free.fr/api/login_check/', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
@@ -21,19 +22,22 @@ async function signInUser(logInData, dispatchers, setLocation) {
             token,
           },
         });
-        feedbackDispatch({ type: 'UNSET_LOADING' });
+        if (errorState.error.message) {
+          errorDispatch({ type: 'UNSET_ERROR' });
+        }
+        loadingDispatch({ type: 'UNSET_LOADING' });
         setLocation('/panel');
       } else {
-        feedbackDispatch({ type: 'UNSET_LOADING' });
+        loadingDispatch({ type: 'UNSET_LOADING' });
         throw new Error('Nombre de usuario o contraseña incorrecta');
       }
     } else {
-      feedbackDispatch({ type: 'UNSET_LOADING' });
+      loadingDispatch({ type: 'UNSET_LOADING' });
       throw new Error('No se permiten campos vacios');
     }
   } catch (err) {
-    feedbackDispatch({ type: 'UNSET_LOADING' });
-    feedbackDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+    loadingDispatch({ type: 'UNSET_LOADING' });
+    errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
   }
 }
 

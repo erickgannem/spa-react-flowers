@@ -5,6 +5,13 @@ import { Card, Badge } from 'react-bootstrap';
 
 import { useLocation } from 'wouter';
 
+import './index.css';
+
+const cardStyle = {
+  minHeight: 425,
+
+};
+
 function CatalogItem(props) {
   const [, setLocation] = useLocation();
   const {
@@ -15,7 +22,7 @@ function CatalogItem(props) {
   };
   return (
 
-    <Card text="dark" className="m-3" style={{ minHeight: 425 }} onClick={cardClickHandler}>
+    <Card text="dark" className="m-3 app-card" as="span" style={cardStyle} onClick={cardClickHandler}>
       <Badge
         variant="primary"
         pill

@@ -1,0 +1,6 @@
+span.app-card:hover {
+  cursor: pointer;
+}
+span.app-card:hover {
+  border: 1px solid #007bff;
+}
