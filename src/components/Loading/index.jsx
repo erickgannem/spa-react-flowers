@@ -1,10 +1,14 @@
 import React from 'react';
+import { Row, Col, Spinner } from 'react-bootstrap';
 
 function Loading() {
   return (
-    <div>
-      <h1>Cargando...</h1>
-    </div>
+    <Row>
+      <Col>
+
+        <Spinner animation="border" variant="primary" />
+      </Col>
+    </Row>
   );
 }
 

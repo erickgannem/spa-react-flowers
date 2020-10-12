@@ -15,7 +15,7 @@ const totalPages = (itemsArr) => {
 };
 function Catalog() {
   const [activePage, setActivePage] = React.useState(1);
-  const [articlesPerPage, setArticlesPerPage] = React.useState(3);
+  const [articlesPerPage] = React.useState(3);
   const { articlesState } = React.useContext(ArticlesContext);
   const { loadingState } = React.useContext(LoadingContext);
 
@@ -34,10 +34,10 @@ function Catalog() {
   const handlePageLeft = () => activePage > 1 && setActivePage(activePage - 1);
   const handlePageRight = () => (activePage < items.length) && setActivePage(activePage + 1);
 
-  // Get current article
   const indexOfLastArticle = activePage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articlesState.articles.slice(indexOfFirstArticle, indexOfLastArticle);
+
   return (
     <>
       <Row noGutters className="justify-content-center align-items-center">

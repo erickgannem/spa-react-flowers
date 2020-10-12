@@ -5,6 +5,7 @@ import Catalog from '../../pages/Catalog';
 import SignIn from '../../pages/SignIn';
 import Dashboard from '../../pages/Dashboard';
 import ProtectedRoute from '../ProtectedRoute';
+import IndividualArticle from '../../pages/IndividualArticle';
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
       <Route path="/Macetas" component={() => <div><h2>Pagina de Macetas</h2></div>} />
       <Route path="/Accesorios" component={() => <div><h2>Pagina de Accesorios</h2></div>} />
       <Route path="/Herramientas" component={() => <div><h2>Pagina de Herramientas</h2></div>} />
+      <Route path="/plantas/:name" component={(params) => <IndividualArticle {...params} />} />
       <Route path="/Entrar" component={SignIn} />
     </Switch>
   );

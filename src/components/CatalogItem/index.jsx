@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 
 import { Card, Badge } from 'react-bootstrap';
 
+import { useLocation } from 'wouter';
+
 function CatalogItem(props) {
+  const [, setLocation] = useLocation();
   const {
     name, description, price, image, available,
   } = props;
+  const cardClickHandler = () => {
+    setLocation(`plantas/${name}`);
+  };
   return (
-    <Card text="dark" className="m-3" style={{ minHeight: 425 }}>
+
+    <Card text="dark" className="m-3" style={{ minHeight: 425 }} onClick={cardClickHandler}>
       <Badge
         variant="primary"
         pill
@@ -31,6 +38,7 @@ function CatalogItem(props) {
         </Card.Text>
       </Card.Body>
     </Card>
+
   );
 }
 
