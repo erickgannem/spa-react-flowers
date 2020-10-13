@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Col, Row, Pagination, PageItem,
+  Col, Row, Pagination, PageItem, Container, CardDeck
 } from 'react-bootstrap';
 
 import Articles from '../../components/Articles';
@@ -25,7 +25,7 @@ function Catalog() {
       items.push(
         <PageItem key={number} active={number === activePage} onClick={() => setActivePage(number)}>
           {number}
-        </PageItem>,
+        </PageItem>
       );
     }
     return items;
@@ -40,7 +40,12 @@ function Catalog() {
 
   return (
     <>
-      <Row noGutters className="justify-content-center align-items-center">
+      <Container>
+        <CardDeck className="justify-content-center">
+        {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
+        </CardDeck>
+      </Container>
+      <Row noGutters className="justify-content-center">
         <Col xl={3} lg={3} md={3}>
           <Pagination size="md" className="justify-content-center align-items-center">
             <Pagination.Prev onClick={handlePageLeft} />
@@ -48,9 +53,6 @@ function Catalog() {
             <Pagination.Next onClick={handlePageRight} />
           </Pagination>
         </Col>
-      </Row>
-      <Row noGutters className="justify-content-center align-items-center">
-        {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
       </Row>
     </>
   );

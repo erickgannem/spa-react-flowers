@@ -7,11 +7,6 @@ import { useLocation } from 'wouter';
 
 import './index.css';
 
-const cardStyle = {
-  minHeight: 425,
-
-};
-
 function CatalogItem(props) {
   const [, setLocation] = useLocation();
   const {
@@ -22,7 +17,7 @@ function CatalogItem(props) {
   };
   return (
 
-    <Card text="dark" className="m-3 app-card" as="span" style={cardStyle} onClick={cardClickHandler}>
+    <Card text="dark" className="mb-4 app-card" as="span" onClick={cardClickHandler}>
       <Badge
         variant="primary"
         pill
@@ -32,7 +27,7 @@ function CatalogItem(props) {
       >
         {available === 'on' ? 'Disponible' : 'No Disponible'}
       </Badge>
-      <Card.Img src={image} />
+      <Card.Img src={image} style={{}}/>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
