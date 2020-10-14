@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import { Card, Badge } from 'react-bootstrap';
 
 import SelectedArticleContext from '../../context/SelectedArticleContext';
+import ModalContext from '../../context/ModalContext';
 
 import './index.css';
 
 function CatalogItem(props) {
   const {
-    selectedArticleState,
     selectedArticleDispatch,
   } = React.useContext(SelectedArticleContext);
+  const { setShowModal } = React.useContext(ModalContext);
   const {
     name, description, price, image, available,
   } = props;
@@ -20,6 +21,7 @@ function CatalogItem(props) {
       name, description, price, image, available,
     };
     selectedArticleDispatch({ type: 'SET_SELECTED_ARTICLE', payload: articlePayload });
+    setShowModal(true);
   };
   return (
 

@@ -8,6 +8,9 @@ import Articles from '../../components/Articles';
 import Loading from '../../components/Loading';
 import ArticlesContext from '../../context/ArticlesContext';
 import LoadingContext from '../../context/LoadingContext';
+import ModalContext from '../../context/ModalContext';
+
+import Modal from '../../components/Modal';
 
 const totalPages = (itemsArr) => {
   const itemsCount = itemsArr ? itemsArr.length : 1;
@@ -18,6 +21,7 @@ function Catalog() {
   const [articlesPerPage] = React.useState(3);
   const { articlesState } = React.useContext(ArticlesContext);
   const { loadingState } = React.useContext(LoadingContext);
+  const { showModal, setShowModal } = React.useContext(ModalContext);
 
   const setPaginationBoxes = React.useCallback((quantity) => {
     const items = [];
@@ -41,6 +45,7 @@ function Catalog() {
   return (
     <>
       <Container>
+        <Modal showModal={showModal} />
         <CardDeck className="justify-content-center">
           {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
         </CardDeck>

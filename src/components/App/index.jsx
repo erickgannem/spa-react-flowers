@@ -11,6 +11,7 @@ import LoadingContext from '../../context/LoadingContext';
 import ArticlesContext from '../../context/ArticlesContext';
 import ErrorContext from '../../context/ErrorContext';
 import SelectedArticleContext from '../../context/SelectedArticleContext';
+import ModalContext from '../../context/ModalContext';
 
 import authReducer from '../../reducers/authReducer';
 import loadingReducer from '../../reducers/loadingReducer';
@@ -57,6 +58,8 @@ function App() {
   const [selectedArticleState, selectedArticleDispatch] = React.useReducer(selectedArticleReducer,
     INITIAL_SELECTED_ARTICLE_STATE);
 
+  const [showModal, setShowModal] = React.useState(false);
+
   React.useEffect(() => {
     grabAuthItems(authDispatch);
     fetchArticles(loadingDispatch, errorDispatch, articlesDispatch);
@@ -70,10 +73,13 @@ function App() {
               <SelectedArticleContext.Provider
                 value={{ selectedArticleState, selectedArticleDispatch }}
               >
-                <Navbar name="El Jardin de Mamá" />
-                <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
-                  <Routes />
-                </Container>
+                <ModalContext.Provider value={{ showModal, setShowModal }}>
+                  <Navbar name="El Jardin de Mamá" />
+                  <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
+                    <Routes />
+                  </Container>
+                </ModalContext.Provider>
+
               </SelectedArticleContext.Provider>
             </ErrorContext.Provider>
           </ArticlesContext.Provider>
