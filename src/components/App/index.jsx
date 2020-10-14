@@ -10,11 +10,13 @@ import AuthContext from '../../context/AuthContext';
 import LoadingContext from '../../context/LoadingContext';
 import ArticlesContext from '../../context/ArticlesContext';
 import ErrorContext from '../../context/ErrorContext';
+import SelectedArticleContext from '../../context/SelectedArticleContext';
 
 import authReducer from '../../reducers/authReducer';
 import loadingReducer from '../../reducers/loadingReducer';
 import articlesReducer from '../../reducers/articlesReducer';
 import errorReducer from '../../reducers/errorReducer';
+import selectedArticleReducer from '../../reducers/selectedArticleReducer';
 
 import grabAuthItems from '../../actions/grabAuthItems';
 import fetchArticles from '../../actions/FetchArticles';
@@ -33,6 +35,13 @@ const INITIAL_ARTICLES_STATE = {
 const INITIAL_ERROR_STATE = {
   error: { message: '' },
 };
+const INITIAL_SELECTED_ARTICLE_STATE = {
+  name: '',
+  description: '',
+  price: '',
+  image: '',
+  available: '',
+};
 
 function App() {
   const [authState, authDispatch] = React.useReducer(authReducer, INITIAL_AUTH_STATE);
@@ -45,6 +54,8 @@ function App() {
   const [errorState, errorDispatch] = React.useReducer(
     errorReducer, INITIAL_ERROR_STATE,
   );
+  const [selectedArticleState, selectedArticleDispatch] = React.useReducer(selectedArticleReducer,
+    INITIAL_SELECTED_ARTICLE_STATE);
 
   React.useEffect(() => {
     grabAuthItems(authDispatch);
@@ -56,10 +67,14 @@ function App() {
         <LoadingContext.Provider value={{ loadingState, loadingDispatch }}>
           <ArticlesContext.Provider value={{ articlesState, articlesDispatch }}>
             <ErrorContext.Provider value={{ errorState, errorDispatch }}>
-              <Navbar name="El Jardin de Mamá" />
-              <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
-                <Routes />
-              </Container>
+              <SelectedArticleContext.Provider
+                value={{ selectedArticleState, selectedArticleDispatch }}
+              >
+                <Navbar name="El Jardin de Mamá" />
+                <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
+                  <Routes />
+                </Container>
+              </SelectedArticleContext.Provider>
             </ErrorContext.Provider>
           </ArticlesContext.Provider>
         </LoadingContext.Provider>

@@ -3,17 +3,23 @@ import PropTypes from 'prop-types';
 
 import { Card, Badge } from 'react-bootstrap';
 
-import { useLocation } from 'wouter';
+import SelectedArticleContext from '../../context/SelectedArticleContext';
 
 import './index.css';
 
 function CatalogItem(props) {
-  const [, setLocation] = useLocation();
+  const {
+    selectedArticleState,
+    selectedArticleDispatch,
+  } = React.useContext(SelectedArticleContext);
   const {
     name, description, price, image, available,
   } = props;
   const cardClickHandler = () => {
-    setLocation(`plantas/${name}`);
+    const articlePayload = {
+      name, description, price, image, available,
+    };
+    selectedArticleDispatch({ type: 'SET_SELECTED_ARTICLE', payload: articlePayload });
   };
   return (
 
