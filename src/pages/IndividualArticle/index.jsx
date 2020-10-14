@@ -11,12 +11,12 @@ function IndividualArticle({ params }) {
 }
 
 IndividualArticle.defaultProps = {
-  params: PropTypes.object,
-  name: PropTypes.string,
+  params: PropTypes.func,
+  name: PropTypes.func,
 };
 IndividualArticle.propTypes = {
-  params: {},
-  name: '',
+  params: () => {},
+  name: () => {},
 };
 
 export default IndividualArticle;

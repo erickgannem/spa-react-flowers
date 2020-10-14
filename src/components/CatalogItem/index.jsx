@@ -17,17 +17,16 @@ function CatalogItem(props) {
   };
   return (
 
-    <Card text="dark" className="mb-4 app-card" as="span" onClick={cardClickHandler}>
+    <Card text="dark" className="mb-4 app-card box-shadow" as="span" onClick={cardClickHandler}>
       <Badge
+        className="app-badge"
         variant="primary"
         pill
-        style={{
-          position: 'absolute', right: -10, top: -10, padding: 7,
-        }}
+
       >
         {available === 'on' ? 'Disponible' : 'No Disponible'}
       </Badge>
-      <Card.Img src={image} style={{}}/>
+      <Card.Img src={image} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
