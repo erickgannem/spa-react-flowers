@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal as BootstrapModal, Button } from 'react-bootstrap';
+import {
+  Modal as BootstrapModal, Button, Container, Row, Col, Image,
+} from 'react-bootstrap';
 
 import SelectedArticleContext from '../../context/SelectedArticleContext';
 import ModalContext from '../../context/ModalContext';
@@ -21,15 +23,32 @@ function Modal() {
       onHide={() => setShowModal(false)}
     >
       <BootstrapModal.Header>
-        <BootstrapModal.Title id="contained-modal-title-vcenter">
-          {name}
+        <BootstrapModal.Title>
+          Descripción del producto
         </BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Body>
+        <Container fluid>
+          <Row>
+            <Col className="justify-content-center p-0" xs={12} md={4}>
+              <Image src={image} style={{ width: '100%' }} />
+            </Col>
+            <Col className="justify-content-center mt-3 mt-md-0 pl-md-5" xs={12} md={8}>
+              <Row>
+                <Col>
+                  <h1>{name}</h1>
+                  <p>{description}</p>
+                  <h3>
+                    Bs.
+                    {' '}
+                    {price}
+                  </h3>
+                </Col>
 
-        <p>
-          {description}
-        </p>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         <Button onClick={() => setShowModal(false)}>Cerrar</Button>
