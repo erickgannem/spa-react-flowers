@@ -51,7 +51,7 @@ function Catalog() {
         </CardDeck>
       </Container>
       <Row noGutters className="justify-content-center">
-        <Col xl={3} lg={3} md={3}>
+        <Col xl={6} lg={3} md={3}>
           <Pagination size="md" className="justify-content-center align-items-center">
             <Pagination.Prev onClick={handlePageLeft} />
             {items}

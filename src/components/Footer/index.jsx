@@ -1,20 +1,30 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
 import './index.css';
+
+import { Container, Col, Row } from 'react-bootstrap';
+
+import ContactForm from '../ContactForm';
 
 function Footer() {
   return (
     <Container className="app-footer py-4" fluid>
       <Row>
-        <Col>
-          <h4>Sobre nosotros</h4>
+        <Col xs={6} md={6} lg={10}>
+          <h4>Contáctanos</h4>
           <span>
-            Contáctanos:
+            Telefono
           </span>
           <br />
           <span>
-            Encuentranos
+            Email
           </span>
+          <br />
+          <span>
+            Dirección
+          </span>
+        </Col>
+        <Col xs={6} md={6} lg={2}>
+          <ContactForm />
         </Col>
       </Row>
     </Container>
