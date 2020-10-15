@@ -50,15 +50,21 @@ function Catalog() {
           {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
         </CardDeck>
       </Container>
-      <Row noGutters className="justify-content-center">
-        <Col xl={6} lg={3} md={3}>
-          <Pagination size="md" className="justify-content-center align-items-center">
-            <Pagination.Prev onClick={handlePageLeft} />
-            {items}
-            <Pagination.Next onClick={handlePageRight} />
-          </Pagination>
-        </Col>
-      </Row>
+
+      {
+        !loadingState.isLoading && (
+        <Row noGutters className="justify-content-center">
+          <Col xl={6} lg={3} md={3}>
+            <Pagination size="md" className="justify-content-center align-items-center">
+              <Pagination.Prev onClick={handlePageLeft} />
+              {items}
+              <Pagination.Next onClick={handlePageRight} />
+            </Pagination>
+          </Col>
+        </Row>
+        )
+      }
+
     </>
   );
 }
