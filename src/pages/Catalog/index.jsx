@@ -46,7 +46,7 @@ function Catalog() {
     <>
       <Container>
         <Modal showModal={showModal} />
-        <Row className="d-flex flex-column px-3 flex-md-row">
+        <Row className="d-flex flex-column px-3 flex-md-row justify-content-center">
           {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
         </Row>
       </Container>
