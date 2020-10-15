@@ -76,11 +76,13 @@ function App() {
               >
                 <ModalContext.Provider value={{ showModal, setShowModal }}>
 
-                  <Navbar name="El Jardin de Mamá" />
-                  <Container className="justify-content-center align-items-center h-100" style={{ paddingTop: 50, paddingBottom: 50 }}>
-                    <Routes />
-                  </Container>
-                  <Footer />
+                  <div className="app-wrapper">
+                    <Navbar name="El Jardin de Mamá" />
+                    <Container className="justify-content-center align-items-center py-5 h-100 px-0">
+                      <Routes />
+                    </Container>
+                    <Footer />
+                  </div>
 
                 </ModalContext.Provider>
               </SelectedArticleContext.Provider>

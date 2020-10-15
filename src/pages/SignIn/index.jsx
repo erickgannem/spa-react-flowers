@@ -30,7 +30,7 @@ function SignIn() {
   };
 
   return (
-    <Row noGutters className="justify-content-center align-items-center" style={{ marginTop: 60 }}>
+    <Row noGutters className="justify-content-center h-100">
       <Col lg="auto" sm="auto" xs="auto">
         {
           errorState.error.message && (
@@ -40,7 +40,7 @@ function SignIn() {
           )
         }
 
-        <Form onSubmit={handleSubmit}>
+        <Form className="my-5" onSubmit={handleSubmit}>
           <Form.Group controlId="username">
             <Form.Label>Usuario</Form.Label>
             <Form.Control type="text" size="lg" onChange={(e) => setUsername(e.target.value)} />

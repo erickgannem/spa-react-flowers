@@ -1,14 +1,17 @@
 import React from 'react';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import {
+  Row, Col, Spinner,
+} from 'react-bootstrap';
+import './index.css';
 
 function Loading() {
   return (
     <Row>
-      <Col>
-
+      <Col className="py-5">
         <Spinner animation="border" variant="primary" />
       </Col>
     </Row>
+
   );
 }
 
