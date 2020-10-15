@@ -11,7 +11,7 @@ function ContactForm() {
       <Row>
         <Col>
           <Form>
-            <Form.Text as="h4" className="mt-0 mb-3">
+            <Form.Text as="h4" className="mt-0 mb-3 text-center">
               Formulario de Contacto
             </Form.Text>
             <Form.Group>
