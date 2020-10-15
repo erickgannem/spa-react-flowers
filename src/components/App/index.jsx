@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 
 import Navbar from '../Navbar';
 import Routes from '../Routes';
+import Footer from '../Footer';
 
 import AuthContext from '../../context/AuthContext';
 import LoadingContext from '../../context/LoadingContext';
@@ -78,8 +79,8 @@ function App() {
                   <Container className="justify-content-center align-items-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
                     <Routes />
                   </Container>
+                  <Footer />
                 </ModalContext.Provider>
-
               </SelectedArticleContext.Provider>
             </ErrorContext.Provider>
           </ArticlesContext.Provider>

@@ -12,7 +12,7 @@ function Modal() {
   const { showModal, setShowModal } = React.useContext(ModalContext);
   const { selectedArticleState } = React.useContext(SelectedArticleContext);
   const {
-    name, description, price, image, available,
+    name, description, price, image,
   } = selectedArticleState;
   return (
     <BootstrapModal
