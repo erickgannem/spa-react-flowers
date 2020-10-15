@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap');
+
+.app-navbar {
+  justify-Content: 'space-between'
+}
+
+.app-brand {
+  font-family: 'Lobster Two', cursive;
+}

@@ -13,6 +13,8 @@ import AuthContext from '../../context/AuthContext';
 import signOutUser from '../../actions/signOutUser';
 import checkAuthentication from '../../services/checkAuthentication';
 
+import './index.css';
+
 function Navbar(props) {
   const { name } = props;
   const [location] = useLocation();
@@ -20,8 +22,8 @@ function Navbar(props) {
 
   return (
     <>
-      <BootstrapNavbar variant="dark" bg="dark" style={{ justifyContent: 'space-between' }} expand="md">
-        <BootstrapNavbar.Brand as={Link} href="/">
+      <BootstrapNavbar variant="dark" bg="dark" className="app-navbar" expand="md">
+        <BootstrapNavbar.Brand as={Link} href="/" className="app-brand">
           {name}
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />

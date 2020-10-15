@@ -21,7 +21,7 @@ function Catalog() {
   const [articlesPerPage] = React.useState(3);
   const { articlesState } = React.useContext(ArticlesContext);
   const { loadingState } = React.useContext(LoadingContext);
-  const { showModal, setShowModal } = React.useContext(ModalContext);
+  const { showModal } = React.useContext(ModalContext);
 
   const setPaginationBoxes = React.useCallback((quantity) => {
     const items = [];
