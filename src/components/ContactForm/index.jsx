@@ -5,6 +5,7 @@ import {
 import './index.css';
 
 function ContactForm() {
+  const { REACT_APP_CONTACT_ENDPOINT } = process.env;
   return (
     <Container className="my-0">
       <Row>
@@ -14,13 +15,13 @@ function ContactForm() {
               Formulario de Contacto
             </Form.Text>
             <Form.Group>
-              <Form.Control type="email" placeholder="Email" />
+              <Form.Control type="email" placeholder="Email" disabled={!REACT_APP_CONTACT_ENDPOINT} />
             </Form.Group>
             <Form.Group>
-              <Form.Control type="text" placeholder="Nombre" />
+              <Form.Control type="text" placeholder="Nombre" disabled={!REACT_APP_CONTACT_ENDPOINT} />
             </Form.Group>
             <Form.Group>
-              <Form.Control type="textarea" placeholder="Comentario" />
+              <Form.Control type="textarea" placeholder="Comentario" disabled={!REACT_APP_CONTACT_ENDPOINT} />
             </Form.Group>
             <Button variant="primary" type="submit">
               Enviar
