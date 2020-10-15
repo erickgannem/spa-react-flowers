@@ -46,9 +46,9 @@ function Catalog() {
     <>
       <Container>
         <Modal showModal={showModal} />
-        <CardDeck className="justify-content-center">
+        <Row className="d-flex flex-column px-3 flex-md-row">
           {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
-        </CardDeck>
+        </Row>
       </Container>
 
       {

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, Badge } from 'react-bootstrap';
+import {
+  Card, Badge, Container, Row, Col,
+} from 'react-bootstrap';
 
 import SelectedArticleContext from '../../context/SelectedArticleContext';
 import ModalContext from '../../context/ModalContext';
@@ -25,28 +27,29 @@ function CatalogItem(props) {
   };
   return (
 
-    <Card text="dark" className="mb-4 app-card box-shadow" as="span" onClick={cardClickHandler}>
-      <Badge
-        className="app-badge"
-        variant="primary"
-        pill
-
-      >
-        {available === 'on' ? 'Disponible' : 'No Disponible'}
-      </Badge>
-      <Card.Img src={image} />
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Text>
-          {description}
-        </Card.Text>
-        <Card.Text>
-          {price}
-          {' '}
-          Bs
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <Col className="my-2" xs={12} md={4}>
+      <Card text="dark" className="app-card h-100" as="span" onClick={cardClickHandler}>
+        <Badge
+          className="app-badge"
+          variant="primary"
+          pill
+        >
+          {available === 'on' ? 'Disponible' : 'No Disponible'}
+        </Badge>
+        <Card.Img src={image} />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>
+            {description}
+          </Card.Text>
+          <Card.Text>
+            {price}
+            {' '}
+            Bs
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </Col>
 
   );
 }
