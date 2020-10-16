@@ -26,7 +26,7 @@ async function signInUser(logInData, dispatchers, states, setLocation) {
           errorDispatch({ type: 'UNSET_ERROR' });
         }
         loadingDispatch({ type: 'UNSET_LOADING' });
-        setLocation('/panel');
+        setLocation('/');
       } else {
         loadingDispatch({ type: 'UNSET_LOADING' });
         throw new Error('Nombre de usuario o contraseña incorrecta');

@@ -10,7 +10,7 @@ import {
   Col,
 } from 'react-bootstrap';
 
-import { Link, useLocation } from 'wouter';
+import { Link } from 'wouter';
 
 import AuthContext from '../../context/AuthContext';
 import signOutUser from '../../actions/signOutUser';
@@ -20,8 +20,7 @@ import './index.css';
 
 function Navbar(props) {
   const { name } = props;
-  const [location] = useLocation();
-  const { authDispatch } = React.useContext(AuthContext);
+  const { authState, authDispatch } = React.useContext(AuthContext);
 
   return (
     <>
@@ -57,36 +56,40 @@ function Navbar(props) {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
-
               {
-                location === '/panel' ? (
-                  <Button variant="danger" as={Link} href="/entrar" onClick={() => signOutUser(authDispatch)}>
-                    Cerrar Sesión
-                  </Button>
-                ) : (
-                  <Button variant={checkAuthentication() ? 'success' : 'primary'} as={Link} href={checkAuthentication() ? '/panel' : '/entrar'}>
-                    {checkAuthentication() ? 'Ir al Panel' : 'Entrar'}
-                  </Button>
-                )
+                !checkAuthentication()
+                  ? (
+                    <Button variant="primary" as={Link} href="/entrar">
+                      Entrar
+                    </Button>
+                  )
+                  : (
+                    <Button variant="danger" as={Link} href="/" onClick={() => signOutUser(authDispatch)}>
+                      Salir
+                    </Button>
+                  )
               }
-
             </Nav.Item>
 
           </Nav>
         </BootstrapNavbar.Collapse>
-        <Container
-          fluid
-          className="bg-info h-30 w-100 px-3 py-1"
-          style={{
-            position: 'absolute', bottom: -32, left: 0, color: '#113d45', fontWeight: 'bolder',
-          }}
-        >
-          <Row>
-            <Col>
-              <p className="m-0 p-0">Logado como administrador</p>
-            </Col>
-          </Row>
-        </Container>
+        {
+          authState.isAuthenticated && (
+            <Container
+              fluid
+              className="bg-info h-30 w-100 px-3 py-1"
+              style={{
+                position: 'absolute', bottom: -25, left: 0, color: '#113d45', fontWeight: 'bolder',
+              }}
+            >
+              <Row>
+                <Col>
+                  <p className="m-0 p-0">Logado como administrador</p>
+                </Col>
+              </Row>
+            </Container>
+          )
+        }
 
       </BootstrapNavbar>
 
