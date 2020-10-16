@@ -28,7 +28,7 @@ function CatalogItem(props) {
   return (
 
     <Col className="my-2 d-flex justify-content-start" xs={12} md={4}>
-      <Card text="dark" className="app-card h-100" onClick={cardClickHandler} style={{ flex: 1 }}>
+      <Card text="dark" className="app-card h-100" onClick={cardClickHandler}>
         <Badge
           className="app-badge"
           variant={available === 'on' ? 'primary' : 'danger'}
@@ -37,7 +37,7 @@ function CatalogItem(props) {
           <span>{available === 'on' ? 'Disponible' : 'No Disponible'}</span>
         </Badge>
         <Card.Img src={image} />
-        <Card.Body>
+        <Card.Body className="d-flex flex-column justify-content-between">
           <Card.Title as="h4" className="text-center">{name}</Card.Title>
           <Card.Text as="p" className="text-center">
             {description}
