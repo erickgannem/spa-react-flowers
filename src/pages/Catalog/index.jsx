@@ -45,7 +45,7 @@ function Catalog() {
   return (
     <>
       <Modal showModal={showModal} />
-      <Row className="d-flex flex-column px-3 flex-md-row justify-content-center">
+      <Row className="d-flex flex-column px-3 flex-md-row justify-content-center align-items-center">
         {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
       </Row>
 

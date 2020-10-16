@@ -1,9 +1,8 @@
 span.app-card:hover {
+  border: 1px solid #007bff;
   cursor: pointer;
 }
-span.app-card:hover {
-  border: 1px solid #007bff;
-}
+
 
 span.app-badge {
   position: absolute; 

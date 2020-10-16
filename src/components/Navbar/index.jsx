@@ -50,7 +50,7 @@ function Navbar(props) {
             </Nav.Item>
             <Nav.Item className="p-2">
               <Nav.Link className="nav-link" as={Link} href="/acerca">
-                Sobre Nosotros
+                Acerca
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
