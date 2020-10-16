@@ -74,9 +74,20 @@ function Navbar(props) {
 
           </Nav>
         </BootstrapNavbar.Collapse>
-        <div className="bg-success h-30 w-100" style={{ position: 'absolute', bottom: -23, left: 0 }}>
-          barra
-        </div>
+        <Container
+          fluid
+          className="bg-info h-30 w-100 px-3 py-1"
+          style={{
+            position: 'absolute', bottom: -32, left: 0, color: '#113d45', fontWeight: 'bolder',
+          }}
+        >
+          <Row>
+            <Col>
+              <p className="m-0 p-0">Logado como administrador</p>
+            </Col>
+          </Row>
+        </Container>
+
       </BootstrapNavbar>
 
     </>
