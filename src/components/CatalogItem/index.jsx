@@ -31,21 +31,22 @@ function CatalogItem(props) {
       <Card text="dark" className="app-card h-100" as="span" onClick={cardClickHandler}>
         <Badge
           className="app-badge"
-          variant="primary"
+          variant={available === 'on' ? 'primary' : 'danger'}
           pill
         >
           {available === 'on' ? 'Disponible' : 'No Disponible'}
         </Badge>
         <Card.Img src={image} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
+          <Card.Title as="h4" className="text-center">{name}</Card.Title>
+          <Card.Text as="p" className="text-center">
             {description}
           </Card.Text>
-          <Card.Text>
-            {price}
+          <Card.Text as="h3" className="text-center">
+            Bs.
             {' '}
-            Bs
+            {price}
+
           </Card.Text>
         </Card.Body>
       </Card>
