@@ -5,6 +5,9 @@ import {
   Navbar as BootstrapNavbar,
   Nav,
   Button,
+  Container,
+  Row,
+  Col,
 } from 'react-bootstrap';
 
 import { Link, useLocation } from 'wouter';
@@ -71,8 +74,11 @@ function Navbar(props) {
 
           </Nav>
         </BootstrapNavbar.Collapse>
-
+        <div className="bg-success h-30 w-100" style={{ position: 'absolute', bottom: -23, left: 0 }}>
+          barra
+        </div>
       </BootstrapNavbar>
+
     </>
   );
 }
