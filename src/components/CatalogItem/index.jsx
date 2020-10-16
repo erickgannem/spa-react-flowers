@@ -27,14 +27,14 @@ function CatalogItem(props) {
   };
   return (
 
-    <Col className="my-2" xs={12} md={4}>
-      <Card text="dark" className="app-card h-100" as="span" onClick={cardClickHandler}>
+    <Col className="my-2 d-flex justify-content-start" xs={12} md={4}>
+      <Card text="dark" className="app-card h-100" onClick={cardClickHandler} style={{ flex: 1 }}>
         <Badge
           className="app-badge"
           variant={available === 'on' ? 'primary' : 'danger'}
           pill
         >
-          {available === 'on' ? 'Disponible' : 'No Disponible'}
+          <span>{available === 'on' ? 'Disponible' : 'No Disponible'}</span>
         </Badge>
         <Card.Img src={image} />
         <Card.Body>

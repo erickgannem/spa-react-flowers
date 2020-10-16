@@ -76,9 +76,9 @@ function App() {
               >
                 <ModalContext.Provider value={{ showModal, setShowModal }}>
 
-                  <div className="app-wrapper">
+                  <div className="app-wrapper d-flex flex-column justify-content-between h-100 ">
                     <Navbar name="El Jardin de Mamá" />
-                    <Container className="justify-content-center align-items-center py-5 h-100 app-container">
+                    <Container className="py-5 app-container">
                       <Routes />
                     </Container>
                     <Footer />
