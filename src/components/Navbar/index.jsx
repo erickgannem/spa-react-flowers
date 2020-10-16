@@ -49,6 +49,12 @@ function Navbar(props) {
               <Nav.Link className="nav-link" as={Link} href="/herramientas">Herramientas</Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">
+              <Nav.Link className="nav-link" as={Link} href="/acerca">
+                Sobre Nosotros
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="p-2">
+
               {
                 location === '/panel' ? (
                   <Button variant="danger" as={Link} href="/entrar" onClick={() => signOutUser(authDispatch)}>
@@ -62,6 +68,7 @@ function Navbar(props) {
               }
 
             </Nav.Item>
+
           </Nav>
         </BootstrapNavbar.Collapse>
 

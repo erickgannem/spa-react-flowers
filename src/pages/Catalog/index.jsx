@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Col, Row, Pagination, PageItem, Container, CardDeck,
+  Col, Row, Pagination, PageItem,
 } from 'react-bootstrap';
 
 import Articles from '../../components/Articles';
@@ -44,16 +44,14 @@ function Catalog() {
 
   return (
     <>
-      <Container>
-        <Modal showModal={showModal} />
-        <Row className="d-flex flex-column px-3 flex-md-row justify-content-center">
-          {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
-        </Row>
-      </Container>
+      <Modal showModal={showModal} />
+      <Row className="d-flex flex-column px-3 flex-md-row justify-content-center">
+        {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
+      </Row>
 
       {
         !loadingState.isLoading && (
-        <Row noGutters className="justify-content-center">
+        <Row noGutters className="justify-content-center mt-3">
           <Col xl={6} lg={3} md={3}>
             <Pagination size="md" className="justify-content-center align-items-center">
               <Pagination.Prev onClick={handlePageLeft} />

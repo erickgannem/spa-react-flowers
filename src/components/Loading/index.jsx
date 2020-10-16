@@ -6,7 +6,7 @@ import './index.css';
 
 function Loading() {
   return (
-    <Row>
+    <Row className="loading-wrapper">
       <Col className="py-5">
         <Spinner animation="border" variant="primary" />
       </Col>

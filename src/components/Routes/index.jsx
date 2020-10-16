@@ -5,6 +5,7 @@ import Catalog from '../../pages/Catalog';
 import SignIn from '../../pages/SignIn';
 import Dashboard from '../../pages/Dashboard';
 import ProtectedRoute from '../ProtectedRoute';
+import About from '../../pages/About';
 
 function Routes() {
   return (
@@ -16,6 +17,7 @@ function Routes() {
       <Route path="/Accesorios" component={() => <div><h2>Pagina de Accesorios</h2></div>} />
       <Route path="/Herramientas" component={() => <div><h2>Pagina de Herramientas</h2></div>} />
       <Route path="/Entrar" component={SignIn} />
+      <Route path="/Acerca" component={About} />
     </Switch>
   );
 }

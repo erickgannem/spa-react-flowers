@@ -78,7 +78,7 @@ function App() {
 
                   <div className="app-wrapper">
                     <Navbar name="El Jardin de Mamá" />
-                    <Container className="justify-content-center align-items-center py-5 h-100 px-0">
+                    <Container className="justify-content-center align-items-center py-5 h-100 px-0 app-container">
                       <Routes />
                     </Container>
                     <Footer />

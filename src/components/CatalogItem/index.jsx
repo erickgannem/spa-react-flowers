@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Card, Badge, Container, Row, Col,
+  Card, Badge, Col,
 } from 'react-bootstrap';
 
 import SelectedArticleContext from '../../context/SelectedArticleContext';
