@@ -20,7 +20,7 @@ import './index.css';
 
 function Navbar(props) {
   const { name } = props;
-  const { authState, authDispatch } = React.useContext(AuthContext);
+  const { authDispatch } = React.useContext(AuthContext);
 
   return (
     <>
@@ -74,7 +74,7 @@ function Navbar(props) {
           </Nav>
         </BootstrapNavbar.Collapse>
         {
-          authState.isAuthenticated && (
+          checkAuthentication() && (
             <Container
               fluid
               className="bg-info h-30 w-100 px-3 py-1"
