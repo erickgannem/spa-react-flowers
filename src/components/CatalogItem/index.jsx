@@ -31,7 +31,7 @@ function CatalogItem(props) {
       <Card text="dark" className="app-card h-100" onClick={cardClickHandler}>
         <Badge
           className="app-badge"
-          variant={available === 'on' ? 'primary' : 'danger'}
+          variant={available === 'on' ? 'success' : 'danger'}
           pill
         >
           <span>{available === 'on' ? 'Disponible' : 'No Disponible'}</span>

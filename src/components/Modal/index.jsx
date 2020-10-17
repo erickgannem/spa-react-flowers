@@ -17,6 +17,11 @@ function Modal() {
   const {
     name, description, price, image,
   } = selectedArticleState;
+
+  const nameInput = React.createRef();
+  const priceInput = React.createRef();
+  const descriptionInput = React.createRef();
+
   return (
     <BootstrapModal
       size="lg"
@@ -37,12 +42,17 @@ function Modal() {
               <Form>
                 <Form.Group>
                   <Form.Label>Nombre de la planta</Form.Label>
-                  <Form.Control type="text" placeholder={`Actual: ${name}`} />
+                  <Form.Control type="text" placeholder={`Actual: ${name}`} ref={nameInput} />
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group>
                   <Form.Label>Precio</Form.Label>
-                  <Form.Control type="text" placeholder={`Actual: ${price}`} />
+                  <Form.Control type="text" placeholder={`Actual: ${price}`} ref={priceInput} />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>Descripción</Form.Label>
+                  <Form.Control type="text" placeholder={`Actual: ${description}`} ref={descriptionInput} />
                 </Form.Group>
               </Form>
             )
@@ -74,17 +84,12 @@ function Modal() {
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         {
-          checkAuthentication()
-          && (
-          <Button
-            variant={!isEditing ? 'danger' : 'success'}
-            onClick={() => setIsEditing(!isEditing)}
-          >
-            {!isEditing ? 'Editar' : 'Enviar Cambios'}
-          </Button>
-          )
+          checkAuthentication() && !isEditing
+          && (<Button variant="danger" onClick={() => setIsEditing(true)}>Editar</Button>)
         }
-
+        {
+          isEditing && (<Button variant="success" onClick={() => { setIsEditing(false); }}>Enviar Cambios</Button>)
+        }
         <Button onClick={() => { setIsEditing(false); setShowModal(false); }}>Cerrar</Button>
       </BootstrapModal.Footer>
     </BootstrapModal>

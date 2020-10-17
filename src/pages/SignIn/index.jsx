@@ -14,8 +14,8 @@ import signInUser from '../../actions/signInUser';
 import './index.css';
 
 function SignIn() {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const usernameInput = React.createRef();
+  const passwordInput = React.createRef();
 
   const [, setLocation] = useLocation();
 
@@ -25,6 +25,9 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const username = usernameInput.current.value;
+    const password = passwordInput.current.value;
+
     await signInUser({ username, password },
       { authDispatch, loadingDispatch, errorDispatch }, { errorState }, setLocation);
   };
@@ -43,11 +46,11 @@ function SignIn() {
         <Form className="my-5" onSubmit={handleSubmit}>
           <Form.Group controlId="username">
             <Form.Label>Usuario</Form.Label>
-            <Form.Control type="text" size="lg" onChange={(e) => setUsername(e.target.value)} />
+            <Form.Control type="text" size="lg" ref={usernameInput} />
           </Form.Group>
           <Form.Group controlId="password">
             <Form.Label>Contraseña</Form.Label>
-            <Form.Control type="password" size="lg" onChange={(e) => setPassword(e.target.value)} />
+            <Form.Control type="password" size="lg" ref={passwordInput} />
           </Form.Group>
           <Form.Group controlId="controls" className="d-flex flex-column">
             <Button variant="success" type="submit">
