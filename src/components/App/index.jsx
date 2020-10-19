@@ -23,6 +23,8 @@ import selectedArticleReducer from '../../reducers/selectedArticleReducer';
 import grabAuthItems from '../../actions/grabAuthItems';
 import fetchArticles from '../../actions/FetchArticles';
 
+import config from '../../shopConfig';
+
 const INITIAL_AUTH_STATE = {
   user: {},
   token: '',
@@ -77,11 +79,11 @@ function App() {
                 <ModalContext.Provider value={{ showModal, setShowModal }}>
 
                   <div className="app-wrapper d-flex flex-column justify-content-between h-100 ">
-                    <Navbar name="El Jardin de Mamá" />
+                    <Navbar name={config.name} />
                     <Container className="py-5 app-container">
                       <Routes />
                     </Container>
-                    <Footer />
+                    <Footer config={config} />
                   </div>
 
                 </ModalContext.Provider>

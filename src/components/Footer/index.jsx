@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { IoIosCall, IoMdMailOpen } from 'react-icons/io';
 import { FaMapMarkerAlt, FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa';
 
@@ -8,7 +9,9 @@ import { Container, Col, Row } from 'react-bootstrap';
 
 import ContactForm from '../ContactForm';
 
-function Footer() {
+function Footer({ config }) {
+  const { phone, email, address } = config;
+
   return (
     <Container className="app-footer py-3" fluid>
       <Row>
@@ -17,19 +20,19 @@ function Footer() {
           <Row className="my-1">
             <Col>
               <IoIosCall className="mr-1" />
-              Telefono
+              {phone}
             </Col>
           </Row>
           <Row className="my-1">
             <Col>
               <IoMdMailOpen className="mr-1" />
-              Email
+              {email}
             </Col>
           </Row>
           <Row className="my-1">
             <Col>
               <FaMapMarkerAlt className="mr-1" />
-              Dirección
+              {address}
             </Col>
           </Row>
 
@@ -64,5 +67,21 @@ function Footer() {
     </Container>
   );
 }
+
+Footer.defaultProps = {
+  config: PropTypes.shape({
+    phone: 'Telefono',
+    email: 'Email',
+    address: 'Dirección',
+  }),
+};
+
+Footer.propTypes = {
+  config: PropTypes.shape({
+    phone: PropTypes.string,
+    email: PropTypes.string,
+    address: PropTypes.string,
+  }),
+};
 
 export default Footer;
