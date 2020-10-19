@@ -1,10 +1,6 @@
 div.app-jumbotron {
-  background-color: #dedbd9;
+  background-color: rgb(201, 201, 201);
   border-radius: 4px;
-  width: 100%;
-}
-
-hr.app-separator {
-  color: #dedbd9;
-  box-shadow: 1px 1px 1px rgba(0, 0, 5, 0.2);
+  border: 1px solid rgba(189, 189, 189, 0.356);
+  box-shadow: -0.5px -0.5px 10px rgba(0, 0, 0, 0.1)
 }

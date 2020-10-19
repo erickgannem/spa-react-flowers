@@ -1,8 +1,6 @@
 import React from 'react';
 import './index.css';
 
-import Container from 'react-bootstrap/Container';
-
 import Navbar from '../Navbar';
 import Routes from '../Routes';
 import Footer from '../Footer';
@@ -80,9 +78,7 @@ function App() {
 
                   <div className="app-wrapper d-flex flex-column justify-content-between h-100 ">
                     <Navbar name={config.name} />
-                    <Container className="py-5 app-container">
-                      <Routes />
-                    </Container>
+                    <Routes />
                     <Footer config={config} />
                   </div>
 

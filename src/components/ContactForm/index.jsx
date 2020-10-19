@@ -1,19 +1,23 @@
 import React from 'react';
 import {
-  Container, Row, Col, Form, Button,
+  Row, Col, Form, Button,
 } from 'react-bootstrap';
 import './index.css';
 
 function ContactForm() {
   const { REACT_APP_CONTACT_ENDPOINT } = process.env;
-  const [email, setEmail] = React.useState('');
-  const [name, setName] = React.useState('');
-  const [comment, setComment] = React.useState('');
+  const emailInput = React.createRef();
+  const nameInput = React.createRef();
+  const commentInput = React.createRef();
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e, endpoint) => {
     e.preventDefault();
+    const email = emailInput.current.value;
+    const name = nameInput.current.value;
+    const comment = commentInput.current.value;
+
     try {
-      const response = await fetch('endpoint', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         body: {
           email,
@@ -27,29 +31,24 @@ function ContactForm() {
     }
   };
   return (
-    <Container className="my-0">
-      <Row>
-        <Col>
-          <Form>
-            <Form.Text as="h4" className="mt-0 mb-3 text-center">
-              Formulario de Contacto
-            </Form.Text>
-            <Form.Group>
-              <Form.Control type="email" placeholder="Email" disabled={!REACT_APP_CONTACT_ENDPOINT} onChange={(e) => setEmail(e.target.value)} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="text" placeholder="Nombre" disabled={!REACT_APP_CONTACT_ENDPOINT} onChange={(e) => setName(e.target.value)} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control as="textarea" placeholder="Comentario" disabled={!REACT_APP_CONTACT_ENDPOINT} onChange={(e) => setComment(e.target.value)} />
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={submitHandler}>
-              Enviar
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+    <Row>
+      <Col>
+        <Form className="p-5 d-flex flex-column app-contact-form">
+          <Form.Group>
+            <Form.Control type="email" placeholder="Email" disabled={!REACT_APP_CONTACT_ENDPOINT} ref={emailInput} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control type="text" placeholder="Nombre" disabled={!REACT_APP_CONTACT_ENDPOINT} ref={nameInput} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control as="textarea" placeholder="Comentario" disabled={!REACT_APP_CONTACT_ENDPOINT} ref={commentInput} />
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={submitHandler} disabled={!REACT_APP_CONTACT_ENDPOINT}>
+            Enviar
+          </Button>
+        </Form>
+      </Col>
+    </Row>
   );
 }
 

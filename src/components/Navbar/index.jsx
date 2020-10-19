@@ -33,11 +33,11 @@ function Navbar(props) {
         <BootstrapNavbar.Collapse style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
           <Nav>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" as={Link} href="/ofertas">
-                Ofertas
+              <Nav.Link className="nav-link" as={Link} href="/Catalogo">
+                Catalogo
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className="p-2">
+            {/* <Nav.Item className="p-2">
               <Nav.Link className="nav-link" as={Link} href="/macetas">
                 Macetas
               </Nav.Link>
@@ -46,13 +46,18 @@ function Navbar(props) {
               <Nav.Link className="nav-link" as={Link} href="/accesorios">
                 Accesorios
               </Nav.Link>
-            </Nav.Item>
-            <Nav.Item className="p-2">
+            </Nav.Item> */}
+            {/* <Nav.Item className="p-2">
               <Nav.Link className="nav-link" as={Link} href="/herramientas">Herramientas</Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
             <Nav.Item className="p-2">
               <Nav.Link className="nav-link" as={Link} href="/acerca">
                 Acerca
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="p-2">
+              <Nav.Link className="nav-link" as={Link} href="/contactanos">
+                Contáctanos
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="p-2">

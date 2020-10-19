@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Button, Form, Row, Col, Alert, Spinner,
+  Container, Button, Form, Row, Col, Alert, Spinner,
 } from 'react-bootstrap';
 
 import { useLocation } from 'wouter';
@@ -33,9 +33,10 @@ function SignIn() {
   };
 
   return (
-    <Row noGutters className="justify-content-center h-100">
-      <Col lg="auto" sm="auto" xs="auto">
-        {
+    <Container>
+      <Row noGutters className="justify-content-center h-100">
+        <Col lg="auto" sm="auto" xs="auto">
+          {
           errorState.error.message && (
           <Alert variant="danger" className="text-center">
             {errorState.error.message}
@@ -43,28 +44,29 @@ function SignIn() {
           )
         }
 
-        <Form className="my-5" onSubmit={handleSubmit}>
-          <Form.Group controlId="username">
-            <Form.Label>Usuario</Form.Label>
-            <Form.Control type="text" size="lg" ref={usernameInput} />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control type="password" size="lg" ref={passwordInput} />
-          </Form.Group>
-          <Form.Group controlId="controls" className="d-flex flex-column">
-            <Button variant="success" type="submit">
-              Entrar
-              {' '}
-              {loadingState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
-            </Button>
-            <Form.Text className="text-center">¿Olvidó su contraseña?</Form.Text>
+          <Form className="my-5" onSubmit={handleSubmit}>
+            <Form.Group controlId="username">
+              <Form.Label>Usuario</Form.Label>
+              <Form.Control type="text" size="lg" ref={usernameInput} />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control type="password" size="lg" ref={passwordInput} />
+            </Form.Group>
+            <Form.Group controlId="controls" className="d-flex flex-column">
+              <Button variant="success" type="submit">
+                Entrar
+                {' '}
+                {loadingState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
+              </Button>
+              <Form.Text className="text-center">¿Olvidó su contraseña?</Form.Text>
 
-          </Form.Group>
+            </Form.Group>
 
-        </Form>
-      </Col>
-    </Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
 
   );
 }

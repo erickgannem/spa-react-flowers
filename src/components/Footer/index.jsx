@@ -7,8 +7,6 @@ import './index.css';
 
 import { Container, Col, Row } from 'react-bootstrap';
 
-import ContactForm from '../ContactForm';
-
 function Footer({ config }) {
   const { phone, email, address } = config;
 
@@ -37,9 +35,7 @@ function Footer({ config }) {
           </Row>
 
         </Col>
-        <Col className="d-flex flex-column justify-content-md-start align-items-md-center mb-4" xs={12} md={4} lg={4}>
-          <ContactForm />
-        </Col>
+        <Col className="d-flex flex-column justify-content-md-start align-items-md-center mb-4" xs={12} md={4} lg={4} />
         <Col className="d-flex flex-column align-items-center justify-content-md-start align-items-md-end" xs={12} md={4} lg={4}>
           <h4>Horarios</h4>
           <span>

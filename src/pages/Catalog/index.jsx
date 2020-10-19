@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Col, Row, Pagination, PageItem,
+  Col, Row, Pagination, PageItem, Container,
 } from 'react-bootstrap';
 
 import Articles from '../../components/Articles';
@@ -45,11 +45,12 @@ function Catalog() {
   return (
     <>
       <Modal showModal={showModal} />
-      <Row className="justify-content-center px-3">
-        {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
-      </Row>
+      <Container className="app-container py-4">
+        <Row className="justify-content-center px-3">
+          {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
+        </Row>
 
-      {
+        {
         !loadingState.isLoading && (
         <Row noGutters className="justify-content-center mt-3">
           <Col xl={6} lg={3} md={3}>
@@ -62,7 +63,7 @@ function Catalog() {
         </Row>
         )
       }
-
+      </Container>
     </>
   );
 }
