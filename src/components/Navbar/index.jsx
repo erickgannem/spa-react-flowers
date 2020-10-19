@@ -10,7 +10,7 @@ import {
   Col,
 } from 'react-bootstrap';
 
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 
 import { FaPlus } from 'react-icons/fa';
 
@@ -21,6 +21,7 @@ import checkAuthentication from '../../services/checkAuthentication';
 import './index.css';
 
 function Navbar(props) {
+  const [, setLocation] = useLocation();
   const { name } = props;
   const { authDispatch } = React.useContext(AuthContext);
 
@@ -35,7 +36,7 @@ function Navbar(props) {
         <BootstrapNavbar.Collapse style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
           <Nav>
             <Nav.Item className="p-2">
-              <Nav.Link className="nav-link" as={Link} href="/Catalogo">
+              <Nav.Link className="nav-link" as={Link} href="/catalogo">
                 Catalogo
               </Nav.Link>
             </Nav.Item>
@@ -91,10 +92,7 @@ function Navbar(props) {
             >
               <Row className="w-100 d-flex flex-row justify-content-between ">
                 <Col>
-                  <p className="m-0 p-0 text-white">Logado como administrador</p>
-                </Col>
-                <Col>
-                  <Button variant="success" className="d-flex justify-content-center align-items-center m-0">
+                  <Button variant="success" className="d-flex justify-content-center align-items-center m-0" onClick={() => setLocation('/nuevo')}>
                     <FaPlus />
                     <small className="text-white ml-1">Anadir Producto</small>
                   </Button>
