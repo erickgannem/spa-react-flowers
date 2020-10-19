@@ -12,6 +12,8 @@ import {
 
 import { Link } from 'wouter';
 
+import { FaPlus } from 'react-icons/fa';
+
 import AuthContext from '../../context/AuthContext';
 import signOutUser from '../../actions/signOutUser';
 import checkAuthentication from '../../services/checkAuthentication';
@@ -82,14 +84,20 @@ function Navbar(props) {
           checkAuthentication() && (
             <Container
               fluid
-              className="bg-info h-30 w-100 px-3 py-1"
+              className="h-30 px-3 py-1"
               style={{
-                position: 'absolute', bottom: -25, left: 0, color: '#113d45', fontWeight: 'bolder',
+                position: 'absolute', bottom: -31, left: 0, color: '#113d45', fontWeight: 'bolder', backgroundColor: '#515A63',
               }}
             >
-              <Row>
+              <Row className="w-100 d-flex flex-row justify-content-between ">
                 <Col>
-                  <p className="m-0 p-0">Logado como administrador</p>
+                  <p className="m-0 p-0 text-white">Logado como administrador</p>
+                </Col>
+                <Col>
+                  <Button variant="success" className="d-flex justify-content-center align-items-center m-0">
+                    <FaPlus />
+                    <small className="text-white ml-1">Anadir Producto</small>
+                  </Button>
                 </Col>
               </Row>
             </Container>
