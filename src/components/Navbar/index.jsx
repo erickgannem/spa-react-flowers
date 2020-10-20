@@ -27,7 +27,7 @@ function Navbar(props) {
 
   return (
     <>
-      <BootstrapNavbar variant="dark" bg="dark" className="app-navbar" expand="md">
+      <BootstrapNavbar variant="dark" bg="dark" className="app-navbar shadow" expand="md">
         <BootstrapNavbar.Brand as={Link} href="/" className="app-brand">
           {name}
         </BootstrapNavbar.Brand>
@@ -81,28 +81,27 @@ function Navbar(props) {
 
           </Nav>
         </BootstrapNavbar.Collapse>
-        {
-          checkAuthentication() && (
-            <Container
-              fluid
-              className="h-30 px-3 py-1"
-              style={{
-                position: 'absolute', bottom: -31, left: 0, color: '#113d45', fontWeight: 'bolder', backgroundColor: '#515A63',
-              }}
-            >
-              <Row className="w-100 d-flex flex-row justify-content-between ">
-                <Col>
-                  <Button variant="success" className="d-flex justify-content-center align-items-center m-0" onClick={() => setLocation('/nuevo')}>
-                    <FaPlus />
-                    <small className="text-white ml-1">Anadir Producto</small>
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
-          )
-        }
-
       </BootstrapNavbar>
+      {
+        checkAuthentication() && (
+          <Container
+            fluid
+            className="h-30 px-3 py-1 shadow"
+            style={{
+              color: '#113d45', fontWeight: 'bolder', backgroundColor: '#515A63',
+            }}
+          >
+            <Row className="w-100 d-flex flex-row justify-content-between ">
+              <Col>
+                <Button variant="success" className="d-flex justify-content-center align-items-center m-0" onClick={() => setLocation('/nuevo')}>
+                  <FaPlus />
+                  <small className="text-white ml-1">Anadir Producto</small>
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        )
+      }
 
     </>
   );

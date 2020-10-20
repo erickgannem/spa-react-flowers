@@ -5,7 +5,16 @@ async function fetchArticles(loadingDispatch, errorDispatch, articlesDispatch) {
       method: 'GET',
     });
     const { data } = await response.json();
-    articlesDispatch({ type: 'FETCH_ARTICLES', payload: { articles: data.articles } });
+    const sortedArticles = data.articles.sort((a, b) => {
+      if (a.active < b.active) {
+        return 1;
+      }
+      if (a.active > b.active) {
+        return -1;
+      }
+      return 0;
+    });
+    articlesDispatch({ type: 'FETCH_ARTICLES', payload: { articles: sortedArticles } });
     loadingDispatch({ type: 'UNSET_LOADING' });
   } catch (err) {
     errorDispatch({ type: 'SET_ERROR', payload: { error: err } });

@@ -11,7 +11,7 @@ function NewArticle() {
   const descriptionInput = React.createRef();
 
   return (
-    <Container>
+    <Container className="my-5">
       <Row>
         <Col>
           <Form className="p-5 d-flex flex-column app-new-article-form">

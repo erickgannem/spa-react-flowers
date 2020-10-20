@@ -45,7 +45,7 @@ function Catalog() {
   return (
     <>
       <Modal showModal={showModal} />
-      <Container className="app-container py-4">
+      <Container className="app-container my-5">
         <Row className="justify-content-center px-3">
           {loadingState.isLoading ? <Loading /> : <Articles articles={currentArticles} />}
         </Row>

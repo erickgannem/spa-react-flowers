@@ -9,5 +9,5 @@
 
 .app-admin-bar {
   color: white;
-  
+  z-index: 2;
 }

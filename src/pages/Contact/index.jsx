@@ -4,7 +4,7 @@ import ContactForm from '../../components/ContactForm';
 
 function Contact() {
   return (
-    <Container fluid className="h-100 d-flex flex-column justify-content-center">
+    <Container fluid className="h-100 d-flex flex-column justify-content-center my-5">
       <Row>
         <Col xs={12} md={6} className="m-auto">
           <h4 className="m-0 p-0 text-center">

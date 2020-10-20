@@ -85,12 +85,12 @@ function Modal() {
       <BootstrapModal.Footer>
         {
           checkAuthentication() && !isEditing
-          && (<Button variant="danger" onClick={() => setIsEditing(true)}>Editar</Button>)
+          && (<Button variant="primary" onClick={() => setIsEditing(true)}>Editar</Button>)
         }
         {
           isEditing && (<Button variant="success" onClick={() => { setIsEditing(false); }}>Enviar Cambios</Button>)
         }
-        <Button onClick={() => { setIsEditing(false); setShowModal(false); }}>Cerrar</Button>
+        <Button variant="danger" onClick={() => { setIsEditing(false); setShowModal(false); }}>Cerrar</Button>
       </BootstrapModal.Footer>
     </BootstrapModal>
   );
