@@ -1,3 +1,5 @@
+// TODO: Split this comment input into a different component to avoid unecessary re-renders}
+
 import React from 'react';
 import {
   Row, Col, Form, Button,
@@ -6,6 +8,8 @@ import shopConfig from '../../shopConfig';
 import './index.css';
 
 function ContactForm() {
+  const MAX_LENGTH = 200;
+  const [charsLeft, setCharsLeft] = React.useState(MAX_LENGTH);
   const emailInput = React.createRef();
   const nameInput = React.createRef();
   const commentInput = React.createRef();
@@ -35,15 +39,18 @@ function ContactForm() {
       <Col>
         <Form className="p-5 d-flex flex-column app-contact-form">
           <Form.Group>
-            <Form.Control type="email" placeholder="Email" disabled={!shopConfig.contact_endpoint} ref={emailInput} />
+            <Form.Control type="email" placeholder="Email" disabled={!shopConfig.contact_endpoint} ref={emailInput} required />
           </Form.Group>
           <Form.Group>
-            <Form.Control type="text" placeholder="Nombre" disabled={!shopConfig.contact_endpoint} ref={nameInput} />
+            <Form.Control type="text" placeholder="Nombre" disabled={!shopConfig.contact_endpoint} ref={nameInput} required />
           </Form.Group>
           <Form.Group>
-            <Form.Control as="textarea" placeholder="Comentario" disabled={!shopConfig.contact_endpoint} ref={commentInput} />
+            <Form.Control as="textarea" maxLength={MAX_LENGTH} placeholder="Comentario" disabled={!shopConfig.contact_endpoint} ref={commentInput} onChange={(e) => setCharsLeft(MAX_LENGTH - e.target.value.length)} required />
+            <small>
+              {charsLeft}
+            </small>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={submitHandler} disabled={!shopConfig.contact_endpoint}>
+          <Button variant="primary" type="submit" onClick={(e) => submitHandler(e, shopConfig.contact_endpoint)} disabled={!shopConfig.contact_endpoint}>
             Enviar
           </Button>
         </Form>
