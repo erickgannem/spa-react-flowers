@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Container, Row, Col, Form,
 } from 'react-bootstrap';
+import Dropzone from '../../components/Dropzone';
 
 import './index.css';
 
@@ -12,6 +13,11 @@ function NewArticle() {
 
   return (
     <Container className="my-5 h-100">
+      <h4 className="text-center m-0">Anadir Producto</h4>
+      <hr className="app-separator my-3" />
+      <Col className="p-0">
+        <Dropzone />
+      </Col>
       <Row>
         <Col>
           <Form className="p-5 d-flex flex-column app-new-article-form">
