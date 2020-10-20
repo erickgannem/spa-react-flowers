@@ -26,3 +26,8 @@ code {
 p, small {
   color: rgb(85, 85, 85)
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+}
