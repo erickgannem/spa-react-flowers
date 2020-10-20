@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Modal as BootstrapModal, Button, Container, Row, Col, Image, Form,
+  Modal as BootstrapModal, Button, Container, Row, Col, Image, Form, ToggleButton, ButtonGroup,
 } from 'react-bootstrap';
+import FormSwitch from '../FormSwitch';
 
 import SelectedArticleContext from '../../context/SelectedArticleContext';
 import ModalContext from '../../context/ModalContext';
@@ -15,7 +16,7 @@ function Modal() {
   const { showModal, setShowModal } = React.useContext(ModalContext);
   const { selectedArticleState } = React.useContext(SelectedArticleContext);
   const {
-    name, description, price, image,
+    name, description, price, image, available,
   } = selectedArticleState;
 
   const nameInput = React.createRef();
@@ -54,6 +55,7 @@ function Modal() {
                   <Form.Label>Descripción</Form.Label>
                   <Form.Control type="text" placeholder={`Actual: ${description}`} ref={descriptionInput} />
                 </Form.Group>
+                <FormSwitch available={available} />
               </Form>
             )
             : (
