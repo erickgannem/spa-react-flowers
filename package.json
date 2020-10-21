@@ -13,6 +13,7 @@
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.0",
     "react-icons": "^3.11.0",
+    "react-player": "^2.6.2",
     "react-scripts": "3.4.3",
     "wouter": "^2.5.1"
   },

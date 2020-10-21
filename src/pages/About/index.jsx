@@ -2,19 +2,22 @@ import React from 'react';
 import './index.css';
 
 import {
-  Container, Jumbotron, Image, Row, Col,
+  Container, Image, Row, Col,
 } from 'react-bootstrap';
+import VideoPlayer from '../../components/VideoPlayer';
 
 import config from '../../shopConfig';
 
 function About() {
   const {
-    about, description1, description2, description3,
+    description1, description2, description3,
   } = config;
   return (
     <Container fluid className="d-flex flex-column justify-content-start h-100 my-5">
       <Row className="video-section">
-        <Col />
+        <Col>
+          <VideoPlayer />
+        </Col>
       </Row>
       <Row className="description-one-section">
         <Col>
