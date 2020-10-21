@@ -24,15 +24,15 @@ function Modal() {
   const descriptionInput = React.createRef();
   const switchInput = React.useRef();
 
-  // refactor ref as state
-  const handleSubmit = (e) => {
+  const handleDataUpdate = (e) => {
     const dataToSubmit = {
       name: nameInput.current.value || name,
       priceInput: priceInput.current.value || price,
       description: descriptionInput.current.value || description,
-      available: switchInput.current.value,
+      available: (switchInput.current.checked ? 'on' : 'off') || available,
     };
     e.preventDefault();
+    // try...catch (api call)
     setIsEditing(false);
   };
 
@@ -103,7 +103,7 @@ function Modal() {
           && (<Button variant="primary" onClick={() => setIsEditing(true)}>Editar</Button>)
         }
         {
-          isEditing && (<Button variant="success" onClick={handleSubmit}>Enviar Cambios</Button>)
+          isEditing && (<Button variant="success" onClick={handleDataUpdate}>Enviar Cambios</Button>)
         }
         <Button variant="danger" type="submit" onClick={() => { setIsEditing(false); setShowModal(false); }}>Cerrar</Button>
       </BootstrapModal.Footer>

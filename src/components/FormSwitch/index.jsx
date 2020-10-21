@@ -7,9 +7,10 @@ const FormSwitch = React.forwardRef((props, ref) => (
     <input
       type="checkbox"
       className="custom-control-input"
+      value={props.available}
+      defaultChecked={props.available === 'on'}
       id="customSwitches"
       ref={ref}
-      defaultChecked={props.available === 'on'}
     />
     <label className="custom-control-label" htmlFor="customSwitches" />
   </div>
