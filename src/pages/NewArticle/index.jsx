@@ -11,6 +11,22 @@ function NewArticle() {
   const priceInput = React.createRef();
   const descriptionInput = React.createRef();
 
+  // handleUpload = files => {
+  //   const { _id: userId, token } = this.props.currentUser.user;
+  //   const { _id: folderId } = this.props.currentFolder;
+
+  //   files.forEach(file => {
+  //     const data = new FormData();
+  //     data.append("file", file);
+  //     api.post(`/api/users/${userId}/folders/${folderId}/files`, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     });
+  //   });
+  // };
+
+  // Must pass onDrop dropzone method from here
   return (
     <Container className="my-5 h-100">
       <h4 className="text-center m-0">Anadir Producto</h4>
