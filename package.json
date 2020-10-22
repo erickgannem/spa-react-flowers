@@ -15,6 +15,7 @@
     "react-icons": "^3.11.0",
     "react-player": "^2.6.2",
     "react-scripts": "3.4.3",
+    "react-youtube": "^7.13.0",
     "wouter": "^2.5.1"
   },
   "scripts": {
