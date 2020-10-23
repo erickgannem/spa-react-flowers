@@ -19,7 +19,7 @@ import errorReducer from '../../reducers/errorReducer';
 import selectedArticleReducer from '../../reducers/selectedArticleReducer';
 
 import grabAuthItems from '../../actions/grabAuthItems';
-import fetchArticles from '../../actions/FetchArticles';
+import fetchArticles from '../../actions/fetchArticles';
 
 import config from '../../shopConfig';
 

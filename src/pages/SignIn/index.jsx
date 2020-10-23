@@ -23,6 +23,10 @@ function SignIn() {
   const { loadingState, loadingDispatch } = React.useContext(LoadingContext);
   const { errorState, errorDispatch } = React.useContext(ErrorContext);
 
+  React.useEffect(() => {
+    errorDispatch({ type: 'UNSET_ERROR' });
+  }, [errorDispatch]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = usernameInput.current.value;

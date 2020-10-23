@@ -7,6 +7,8 @@ import FormSwitch from '../../components/FormSwitch';
 import LoadingContext from '../../context/LoadingContext';
 import ErrorContext from '../../context/ErrorContext';
 
+import submitNewArticle from '../../actions/submitNewArticle';
+
 import './index.css';
 
 function NewArticle() {
@@ -22,7 +24,7 @@ function NewArticle() {
 
   React.useEffect(() => {
     errorDispatch({ type: 'UNSET_ERROR' });
-  }, []);
+  }, [errorDispatch]);
 
   const handleOnDrop = (files) => {
     const formData = new FormData();
@@ -33,35 +35,15 @@ function NewArticle() {
 
   const handleSubmitNewArticle = async (e) => {
     e.preventDefault();
+
     errorDispatch({ type: 'UNSET_ERROR' });
-
-    try {
-      loadingDispatch({ type: 'SET_LOADING' });
-      const body = {
-        name: nameInput.current.value,
-        active: switchInput.current.checked ? 'on' : 'off',
-        description: descriptionInput.current.value,
-        price: priceInput.current.value,
-        image: droppedFile,
-      };
-
-      if (body.name === '' || body.description === '' || body.price === '' || !(body.image instanceof FormData)) {
-        throw new Error('All fields must be filled');
-      }
-
-      const response = await fetch('http://lapalabra.free.fr/api/articles/', {
-        method: 'POST',
-        headers: new Headers({
-          Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,
-        }),
-        body,
-      });
-      setSuccesfullyAdded(true);
-      loadingDispatch({ type: 'UNSET_LOADING' });
-    } catch (err) {
-      errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
-      loadingDispatch({ type: 'UNSET_LOADING' });
-    }
+    submitNewArticle({
+      nameInput,
+      switchInput,
+      descriptionInput,
+      priceInput,
+      droppedFile,
+    }, { errorDispatch, loadingDispatch }, { setSuccesfullyAdded });
   };
   return (
     <Container className="my-5 h-100">
