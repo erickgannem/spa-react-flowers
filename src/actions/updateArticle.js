@@ -1,7 +1,7 @@
 async function updateArticle(fields, dispatchers, setters, currentData) {
   const { errorDispatch, loadingDispatch } = dispatchers;
   const { setSuccesfullyUpdated, setIsEditing } = setters;
-  const { name } = currentData;
+  const { name, image } = currentData;
   const {
     nameInput,
     switchInput,
@@ -18,7 +18,7 @@ async function updateArticle(fields, dispatchers, setters, currentData) {
       available: (switchInput.current.checked ? 'on' : 'off'),
       image: droppedFile,
     };
-    if (body.name === '' || body.description === '' || body.price === '' || !(body.image instanceof FormData)) {
+    if (body.name === '' || body.description === '' || body.price === '') {
       throw new Error('All fields must be filled');
     }
     await fetch(` http://lapalabra.free.fr/api/articles/${name}`, {

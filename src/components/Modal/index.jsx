@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 import {
-  Modal as BootstrapModal, Button, Container, Row, Col, Image, Form,
+  Modal as BootstrapModal, Button, Container, Row, Col, Image, Form, Spinner, Alert,
 } from 'react-bootstrap';
 import FormSwitch from '../FormSwitch';
 import Dropzone from '../Dropzone';
@@ -19,15 +19,15 @@ import LoadingContext from '../../context/LoadingContext';
 
 function Modal() {
   const [isEditing, setIsEditing] = React.useState(false);
-  const [, setSuccesfullyUpdated] = React.useState(false);
+  const [succesfullyUpdated, setSuccesfullyUpdated] = React.useState(false);
   const [droppedFile, setDroppedFile] = React.useState({});
   const { showModal, setShowModal } = React.useContext(ModalContext);
   const { selectedArticleState } = React.useContext(SelectedArticleContext);
   const {
     name, description, price, image, available,
   } = selectedArticleState;
-  const { errorDispatch } = React.useContext(ErrorContext);
-  const { loadingDispatch } = React.useContext(LoadingContext);
+  const { errorState, errorDispatch } = React.useContext(ErrorContext);
+  const { loadingState, loadingDispatch } = React.useContext(LoadingContext);
 
   const nameInput = React.createRef();
   const priceInput = React.createRef();
@@ -71,6 +71,20 @@ function Modal() {
           isEditing
             ? (
               <Form>
+                {
+                  errorState.error.message && (
+                  <Alert variant="danger" className="text-center">
+                    {errorState.error.message}
+                  </Alert>
+                  )
+                }
+                {
+                  succesfullyUpdated && (
+                  <Alert variant="success" className="text-center">
+                    Article has been updated succesfully!
+                  </Alert>
+                  )
+                }
                 <Form.Group>
                   <Dropzone onDrop={handleOnDrop} />
                 </Form.Group>
@@ -123,7 +137,13 @@ function Modal() {
           && (<Button variant="primary" onClick={() => setIsEditing(true)}>Editar</Button>)
         }
         {
-          isEditing && (<Button type="submit" variant="success" onClick={handleArticleUpdate}>Enviar Cambios</Button>)
+          isEditing && (
+          <Button type="submit" variant="success" onClick={handleArticleUpdate}>
+            Enviar Cambios
+            {' '}
+            {loadingState.isLoading && <Spinner as="span" animation="border" size="sm" role="status" />}
+          </Button>
+          )
         }
         <Button variant="danger" type="submit" onClick={() => { setIsEditing(false); setShowModal(false); }}>Cerrar</Button>
       </BootstrapModal.Footer>
