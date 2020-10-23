@@ -1,7 +1,7 @@
 async function updateArticle(fields, dispatchers, setters, currentData) {
   const { errorDispatch, loadingDispatch } = dispatchers;
   const { setSuccesfullyUpdated, setIsEditing } = setters;
-  const { name, image } = currentData;
+  const { name } = currentData;
   const {
     nameInput,
     switchInput,
