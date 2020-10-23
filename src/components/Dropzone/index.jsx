@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import { IoMdDownload } from 'react-icons/io';
 import './index.css';
 
-function Dropzone() {
-  const onDrop = React.useCallback(() => {
-    // Process files
-  }, []);
+function Dropzone({ onDrop }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -22,5 +20,12 @@ function Dropzone() {
     </div>
   );
 }
+
+Dropzone.defaultProps = {
+  onDrop: () => {},
+};
+Dropzone.propTypes = {
+  onDrop: PropTypes.func,
+};
 
 export default Dropzone;

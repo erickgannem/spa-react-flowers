@@ -37,12 +37,12 @@ function SignIn() {
       <Row noGutters className="justify-content-center h-100">
         <Col lg="auto" sm="auto" xs="auto">
           {
-          errorState.error.message && (
-          <Alert variant="danger" className="text-center">
-            {errorState.error.message}
-          </Alert>
-          )
-        }
+            errorState.error.message && (
+            <Alert variant="danger" className="text-center">
+              {errorState.error.message}
+            </Alert>
+            )
+          }
 
           <Form className="my-5" onSubmit={handleSubmit}>
             <Form.Group controlId="username">
