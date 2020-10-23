@@ -8,6 +8,7 @@ import LoadingContext from '../../context/LoadingContext';
 import ErrorContext from '../../context/ErrorContext';
 
 import submitNewArticle from '../../actions/submitNewArticle';
+import handleDropFiles from '../../services/handleDropFiles';
 
 import './index.css';
 
@@ -27,9 +28,7 @@ function NewArticle() {
   }, [errorDispatch]);
 
   const handleOnDrop = (files) => {
-    const formData = new FormData();
-    const file = files[0];
-    formData.append('file', file);
+    const formData = handleDropFiles(files);
     setDroppedFile(formData);
   };
 

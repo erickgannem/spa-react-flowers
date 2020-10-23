@@ -1,6 +1,7 @@
-async function submitNewArticle(fields, dispatchers, setters) {
+async function updateArticle(fields, dispatchers, setters, currentData) {
   const { errorDispatch, loadingDispatch } = dispatchers;
-  const { setSuccesfullyAdded } = setters;
+  const { setSuccesfullyUpdated, setIsEditing } = setters;
+  const { name } = currentData;
   const {
     nameInput,
     switchInput,
@@ -8,33 +9,32 @@ async function submitNewArticle(fields, dispatchers, setters) {
     priceInput,
     droppedFile,
   } = fields;
-
   try {
     loadingDispatch({ type: 'SET_LOADING' });
     const body = {
       name: nameInput.current.value,
-      active: switchInput.current.checked ? 'on' : 'off',
+      priceInput: priceInput.current.value,
       description: descriptionInput.current.value,
-      price: priceInput.current.value,
+      available: (switchInput.current.checked ? 'on' : 'off'),
       image: droppedFile,
     };
     if (body.name === '' || body.description === '' || body.price === '' || !(body.image instanceof FormData)) {
       throw new Error('All fields must be filled');
     }
-
-    await fetch('http://lapalabra.free.fr/api/articles/', {
-      method: 'POST',
+    await fetch(` http://lapalabra.free.fr/api/articles/${name}`, {
+      method: 'PUT',
       headers: new Headers({
         Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,
       }),
       body,
     });
-    setSuccesfullyAdded(true);
     loadingDispatch({ type: 'UNSET_LOADING' });
+    setSuccesfullyUpdated(true);
+    setIsEditing(false);
   } catch (err) {
     errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
     loadingDispatch({ type: 'UNSET_LOADING' });
   }
 }
 
-export default submitNewArticle;
+export default updateArticle;
