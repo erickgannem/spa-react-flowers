@@ -20,6 +20,10 @@ function NewArticle() {
   const { loadingState, loadingDispatch } = React.useContext(LoadingContext);
   const { errorState, errorDispatch } = React.useContext(ErrorContext);
 
+  React.useEffect(() => {
+    errorDispatch({ type: 'UNSET_ERROR' });
+  }, []);
+
   const handleOnDrop = (files) => {
     const formData = new FormData();
     const file = files[0];
