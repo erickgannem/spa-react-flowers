@@ -1,3 +1,5 @@
+import shopConfig from '../shopConfig';
+
 async function updateArticle(fields, dispatchers, setters, currentData) {
   const { errorDispatch, loadingDispatch } = dispatchers;
   const { setSuccesfullyUpdated, setIsEditing } = setters;
@@ -27,7 +29,7 @@ async function updateArticle(fields, dispatchers, setters, currentData) {
     if (body.price === '') { throw new Error('El campo de Precio no puede estar vacio'); }
     if (body.imageFile instanceof FormData) { body.image = body.imageFile.getAll('file')[0].name; }
 
-    await fetch(` http://lapalabra.free.fr/api/articles/${name}`, {
+    await fetch(shopConfig.update_endpoint + name, {
       method: 'PUT',
       headers: new Headers({
         Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,

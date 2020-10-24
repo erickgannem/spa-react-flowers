@@ -1,3 +1,5 @@
+import shopConfig from '../shopConfig';
+
 async function submitNewArticle(fields, dispatchers, setters) {
   const { errorDispatch, loadingDispatch } = dispatchers;
   const { setSuccesfullyAdded } = setters;
@@ -23,7 +25,7 @@ async function submitNewArticle(fields, dispatchers, setters) {
       throw new Error('All fields must be filled');
     }
 
-    await fetch('http://lapalabra.free.fr/api/articles/', {
+    await fetch(shopConfig.add_endpoint, {
       method: 'POST',
       headers: new Headers({
         Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,

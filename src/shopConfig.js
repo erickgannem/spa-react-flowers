@@ -18,6 +18,8 @@ export default {
     photo2: 'https://www.victorromero.com.br/wp-content/uploads/2019/03/image-placeholder-350x350.png',
   },
 
+  add_endpoint: 'http://lapalabra.free.fr/api/articles/',
   contact_endpoint: 'http://lapalabra.free.fr/api/contact_test/',
+  update_endpoint: 'http://lapalabra.free.fr/api/articles/',
 
 };
