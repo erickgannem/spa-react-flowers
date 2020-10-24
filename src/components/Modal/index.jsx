@@ -47,7 +47,13 @@ function Modal() {
       descriptionInput,
       switchInput,
       droppedFile,
-    }, { errorDispatch, loadingDispatch }, { setIsEditing, setSuccesfullyUpdated }, { name });
+    }, {
+      errorDispatch,
+      loadingDispatch,
+    },
+    { setIsEditing, setSuccesfullyUpdated }, {
+      name, image, description, price, available,
+    });
   };
 
   return (
@@ -108,10 +114,10 @@ function Modal() {
             : (
               <Container fluid>
                 <Row>
-                  <Col className="justify-content-center p-0" xs={12} md={4}>
+                  <Col className="justify-content-center p-0" xs={12} md={5} lg={4}>
                     <Image src={image} />
                   </Col>
-                  <Col className="justify-content-center mt-3 mt-md-0 pl-md-5" xs={12} md={8}>
+                  <Col className="justify-content-center mt-3 mt-md-0 pl-md-5" xs={12} md={7} lg={8}>
                     <Row>
                       <Col>
                         <h1>{name}</h1>

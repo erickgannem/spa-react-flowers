@@ -9,6 +9,7 @@ const Articles = ({ articles }) => (
       available={article.active}
       description={article.description}
       price={article.price}
+      // image={article.image}
     />
   )));
 

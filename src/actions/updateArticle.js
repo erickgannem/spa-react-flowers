@@ -1,7 +1,9 @@
 async function updateArticle(fields, dispatchers, setters, currentData) {
   const { errorDispatch, loadingDispatch } = dispatchers;
   const { setSuccesfullyUpdated, setIsEditing } = setters;
-  const { name } = currentData;
+  const {
+    name, image, description, price, available,
+  } = currentData;
   const {
     nameInput,
     switchInput,
@@ -12,15 +14,19 @@ async function updateArticle(fields, dispatchers, setters, currentData) {
   try {
     loadingDispatch({ type: 'SET_LOADING' });
     const body = {
-      name: nameInput.current.value,
-      priceInput: priceInput.current.value,
-      description: descriptionInput.current.value,
-      available: (switchInput.current.checked ? 'on' : 'off'),
-      image: droppedFile,
+      name: nameInput.current.value || name,
+      priceInput: priceInput.current.value || price,
+      description: descriptionInput.current.value || description,
+      available: (switchInput.current.checked ? 'on' : 'off') || available,
+      imageFile: droppedFile,
+      image,
     };
-    if (body.name === '' || body.description === '' || body.price === '') {
-      throw new Error('All fields must be filled');
-    }
+
+    if (body.name === '') { throw new Error('El campo Nombre no puede estar vacio'); }
+    if (body.description === '') { throw new Error('El campo description no puede estar vacio'); }
+    if (body.price === '') { throw new Error('El campo de Precio no puede estar vacio'); }
+    if (body.imageFile instanceof FormData) { body.image = body.imageFile.getAll('file')[0].name; }
+
     await fetch(` http://lapalabra.free.fr/api/articles/${name}`, {
       method: 'PUT',
       headers: new Headers({
