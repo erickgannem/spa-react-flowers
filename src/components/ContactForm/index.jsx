@@ -7,6 +7,7 @@ import {
   Row, Col, Form, Button, Spinner, Alert,
 } from 'react-bootstrap';
 
+import * as EmailValidator from 'email-validator';
 import shopConfig from '../../shopConfig';
 import LoadingContext from '../../context/LoadingContext';
 import ErrorContext from '../../context/ErrorContext';
@@ -48,6 +49,7 @@ function ContactForm() {
 
       if (body.email === '') throw new Error('El campo e-mail no puede estar vacio');
       if (body.name === '') throw new Error('El campo nombre no puede estar vacio');
+      if (!EmailValidator.validate(body.email)) throw new Error('Indique un e-mail valido');
       if (body.message === '') throw new Error('El campo de mensaje no puede estar vacio');
 
       await fetch(shopConfig.contact_endpoint, {
