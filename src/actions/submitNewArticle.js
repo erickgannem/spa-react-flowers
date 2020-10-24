@@ -16,9 +16,10 @@ async function submitNewArticle(fields, dispatchers, setters) {
       active: switchInput.current.checked ? 'on' : 'off',
       description: descriptionInput.current.value,
       price: priceInput.current.value,
-      image: droppedFile,
+      imageFile: droppedFile,
+      image: droppedFile.getAll('file')[0].name,
     };
-    if (body.name === '' || body.description === '' || body.price === '' || !(body.image instanceof FormData)) {
+    if (body.name === '' || body.description === '' || body.price === '' || !(body.imageFile instanceof FormData)) {
       throw new Error('All fields must be filled');
     }
 

@@ -45,7 +45,7 @@ function NewArticle() {
     }, { errorDispatch, loadingDispatch }, { setSuccesfullyAdded });
   };
   return (
-    <Container className="my-5 h-100">
+    <Container className="my-5">
       <h4 className="text-center m-0">Anadir Producto</h4>
       <hr className="app-separator my-3" />
       {
