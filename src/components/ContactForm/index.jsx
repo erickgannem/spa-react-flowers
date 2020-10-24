@@ -22,6 +22,8 @@ function ContactForm() {
   const nameInput = React.createRef();
   const messageInput = React.createRef();
 
+  const ipifyUrl = 'https://api.ipify.org/?format=json';
+
   React.useEffect(() => {
     errorDispatch('UNSET_ERROR');
   }, [errorDispatch]);
@@ -36,14 +38,23 @@ function ContactForm() {
         email: emailInput.current.value,
         name: nameInput.current.value,
         message: messageInput.current.value,
+        address: null,
       };
-      if (body.name === '' || body.description === '' || body.price === '') {
-        throw new Error('All fields must be filled');
-      }
+
+      const ipifyRequest = await fetch(ipifyUrl);
+      const data = await ipifyRequest.json();
+      const { ip } = data;
+      body.address = ip;
+
+      if (body.email === '') throw new Error('El campo e-mail no puede estar vacio');
+      if (body.name === '') throw new Error('El campo nombre no puede estar vacio');
+      if (body.message === '') throw new Error('El campo de mensaje no puede estar vacio');
+
       await fetch(shopConfig.contact_endpoint, {
         method: 'POST',
         body: JSON.stringify(body),
       });
+
       setSuccesfullySubmitted(true);
       loadingDispatch({ type: 'UNSET_LOADING' });
     } catch (err) {
@@ -71,7 +82,7 @@ function ContactForm() {
         <Form className="p-5 d-flex flex-column app-contact-form">
 
           <Form.Group>
-            <Form.Control type="email" placeholder="Email" disabled={!shopConfig.contact_endpoint} ref={emailInput} required />
+            <Form.Control as="input" type="email" placeholder="Email" disabled={!shopConfig.contact_endpoint} ref={emailInput} required />
           </Form.Group>
           <Form.Group>
             <Form.Control type="text" placeholder="Nombre" disabled={!shopConfig.contact_endpoint} ref={nameInput} required />
