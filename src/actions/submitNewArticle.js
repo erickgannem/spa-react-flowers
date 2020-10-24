@@ -32,6 +32,7 @@ async function submitNewArticle(fields, dispatchers, setters) {
       }),
       body: JSON.stringify(body),
     });
+    errorDispatch({ type: 'UNSET_ERROR' });
     setSuccesfullyAdded(true);
     loadingDispatch({ type: 'UNSET_LOADING' });
   } catch (err) {
