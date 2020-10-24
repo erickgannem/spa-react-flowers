@@ -78,9 +78,9 @@ function Modal() {
             ? (
               <Form>
                 {
-                  errorState.error.message && (
+                  (errorState.error && errorState.error.updateArticle) && (
                   <Alert variant="danger" className="text-center">
-                    {errorState.error.message}
+                    {errorState.error.updateArticle.message}
                   </Alert>
                   )
                 }

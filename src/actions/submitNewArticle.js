@@ -36,7 +36,16 @@ async function submitNewArticle(fields, dispatchers, setters) {
     setSuccesfullyAdded(true);
     loadingDispatch({ type: 'UNSET_LOADING' });
   } catch (err) {
-    errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+    errorDispatch({
+      type: 'SET_ERROR',
+      payload: {
+        error: {
+          newArticle: {
+            message: err.message,
+          },
+        },
+      },
+    });
     loadingDispatch({ type: 'UNSET_LOADING' });
   }
 }

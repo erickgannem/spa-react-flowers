@@ -37,7 +37,14 @@ async function signInUser(logInData, dispatchers, states, setLocation) {
     }
   } catch (err) {
     loadingDispatch({ type: 'UNSET_LOADING' });
-    errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+    errorDispatch({
+      type: 'SET_ERROR',
+      payload: {
+        error: {
+          signIn: { message: err.message },
+        },
+      },
+    });
   }
 }
 

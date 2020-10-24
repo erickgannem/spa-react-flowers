@@ -41,9 +41,9 @@ function SignIn() {
       <Row noGutters className="justify-content-center h-100">
         <Col lg="auto" sm="auto" xs="auto">
           {
-            errorState.error.message && (
+            (errorState.error && errorState.error.signIn) && (
             <Alert variant="danger" className="text-center">
-              {errorState.error.message}
+              {errorState.error.signIn.message}
             </Alert>
             )
           }

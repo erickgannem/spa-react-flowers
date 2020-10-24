@@ -40,7 +40,16 @@ async function updateArticle(fields, dispatchers, setters, currentData) {
     setSuccesfullyUpdated(true);
     setIsEditing(false);
   } catch (err) {
-    errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+    errorDispatch({
+      type: 'SET_ERROR',
+      payload: {
+        error: {
+          updateArticle: {
+            message: err.message,
+          },
+        },
+      },
+    });
     loadingDispatch({ type: 'UNSET_LOADING' });
   }
 }

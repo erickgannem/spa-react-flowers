@@ -48,8 +48,8 @@ function ContactForm() {
       body.address = ip;
 
       if (body.email === '') throw new Error('El campo e-mail no puede estar vacio');
-      if (body.name === '') throw new Error('El campo nombre no puede estar vacio');
       if (!EmailValidator.validate(body.email)) throw new Error('Indique un e-mail valido');
+      if (body.name === '') throw new Error('El campo nombre no puede estar vacio');
       if (body.message === '') throw new Error('El campo de mensaje no puede estar vacio');
 
       await fetch(shopConfig.contact_endpoint, {
@@ -60,7 +60,12 @@ function ContactForm() {
       setSuccesfullySubmitted(true);
       loadingDispatch({ type: 'UNSET_LOADING' });
     } catch (err) {
-      errorDispatch({ type: 'SET_ERROR', payload: { error: { message: err.message } } });
+      errorDispatch({
+        type: 'SET_ERROR',
+        payload: {
+          error: { contactForm: { message: err.message } },
+        },
+      });
       loadingDispatch({ type: 'UNSET_LOADING' });
     }
   };
@@ -68,9 +73,9 @@ function ContactForm() {
     <Row>
       <Col>
         {
-          errorState.error.message && (
+          (errorState.error && errorState.error.contactForm) && (
           <Alert variant="danger" className="text-center">
-            {errorState.error.message}
+            {errorState.error.contactForm.message}
           </Alert>
           )
         }

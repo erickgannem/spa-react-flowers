@@ -35,7 +35,6 @@ function NewArticle() {
   const handleSubmitNewArticle = async (e) => {
     e.preventDefault();
 
-    errorDispatch({ type: 'UNSET_ERROR' });
     submitNewArticle({
       nameInput,
       switchInput,
@@ -49,9 +48,9 @@ function NewArticle() {
       <h4 className="text-center m-0">Anadir Producto</h4>
       <hr className="app-separator my-3" />
       {
-        errorState.error.message && (
+        (errorState.error && errorState.error.newArticle) && (
         <Alert variant="danger" className="text-center">
-          {errorState.error.message}
+          {errorState.error.newArticle.message}
         </Alert>
         )
       }
