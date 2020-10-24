@@ -12,7 +12,7 @@ import LoadingContext from '../../context/LoadingContext';
 import ErrorContext from '../../context/ErrorContext';
 
 function ContactForm() {
-  const MAX_LENGTH = 200;
+  const MAX_LENGTH = 120;
   const { loadingState, loadingDispatch } = React.useContext(LoadingContext);
   const { errorState, errorDispatch } = React.useContext(ErrorContext);
   const [succesfullySubmited, setSuccesfullySubmitted] = React.useState(false);
@@ -20,7 +20,11 @@ function ContactForm() {
   const [charsLeft, setCharsLeft] = React.useState(MAX_LENGTH);
   const emailInput = React.createRef();
   const nameInput = React.createRef();
-  const commentInput = React.createRef();
+  const messageInput = React.createRef();
+
+  React.useEffect(() => {
+    errorDispatch('UNSET_ERROR');
+  }, [errorDispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -31,14 +35,14 @@ function ContactForm() {
       const body = {
         email: emailInput.current.value,
         name: nameInput.current.value,
-        comment: commentInput.current.value,
+        message: messageInput.current.value,
       };
       if (body.name === '' || body.description === '' || body.price === '') {
         throw new Error('All fields must be filled');
       }
       await fetch(shopConfig.contact_endpoint, {
         method: 'POST',
-        body,
+        body: JSON.stringify(body),
       });
       setSuccesfullySubmitted(true);
       loadingDispatch({ type: 'UNSET_LOADING' });
@@ -73,7 +77,7 @@ function ContactForm() {
             <Form.Control type="text" placeholder="Nombre" disabled={!shopConfig.contact_endpoint} ref={nameInput} required />
           </Form.Group>
           <Form.Group>
-            <Form.Control as="textarea" maxLength={MAX_LENGTH} placeholder="Comentario" disabled={!shopConfig.contact_endpoint} ref={commentInput} onChange={(e) => setCharsLeft(MAX_LENGTH - e.target.value.length)} required />
+            <Form.Control as="textarea" maxLength={MAX_LENGTH} placeholder="Mensaje" disabled={!shopConfig.contact_endpoint} ref={messageInput} onChange={(e) => setCharsLeft(MAX_LENGTH - e.target.value.length)} required />
             <small>
               {charsLeft}
             </small>

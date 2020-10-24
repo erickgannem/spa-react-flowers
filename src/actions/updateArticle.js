@@ -26,7 +26,7 @@ async function updateArticle(fields, dispatchers, setters, currentData) {
       headers: new Headers({
         Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,
       }),
-      body,
+      body: JSON.stringify(body),
     });
     loadingDispatch({ type: 'UNSET_LOADING' });
     setSuccesfullyUpdated(true);

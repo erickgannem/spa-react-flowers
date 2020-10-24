@@ -27,7 +27,7 @@ async function submitNewArticle(fields, dispatchers, setters) {
       headers: new Headers({
         Authorization: `Bearer ${localStorage.getItem('@jdm_user_token')}`,
       }),
-      body,
+      body: JSON.stringify(body),
     });
     setSuccesfullyAdded(true);
     loadingDispatch({ type: 'UNSET_LOADING' });
