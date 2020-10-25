@@ -120,9 +120,9 @@ function Modal() {
                   <Col className="d-flex flew-column justify-content-center mt-3 mt-lg-0 justify-content-lg-start" lg={8}>
                     <Row>
                       <Col>
-                        <h1>{name}</h1>
-                        <p>{description}</p>
-                        <h3>
+                        <h2 className="modal-name">{name}</h2>
+                        <p className="modal-description">{description}</p>
+                        <h3 className="modal-price">
                           Bs.
                           {' '}
                           {price}

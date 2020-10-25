@@ -37,12 +37,12 @@ function CatalogItem(props) {
           <span>{available === 'on' ? 'Disponible' : 'No Disponible'}</span>
         </Badge>
         <Card.Img src={image} />
-        <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-          <Card.Title as="h4" className="text-center">{name}</Card.Title>
-          <Card.Text as="p" className="text-center">
+        <Card.Body className="d-flex flex-column align-items-center justify-content-start">
+          <Card.Title as="h4" className="text-center card-title">{name}</Card.Title>
+          <Card.Text as="p" className="text-center card-description">
             {description}
           </Card.Text>
-          <Card.Text as="h3" className="text-center">
+          <Card.Text as="h3" className="text-center mt-auto card-price">
             Bs.
             {' '}
             {price}
