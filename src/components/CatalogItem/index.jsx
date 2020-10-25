@@ -37,7 +37,7 @@ function CatalogItem(props) {
           <span>{available === 'on' ? 'Disponible' : 'No Disponible'}</span>
         </Badge>
         <Card.Img src={image} />
-        <Card.Body className="d-flex flex-column justify-content-between">
+        <Card.Body className="d-flex flex-column align-items-center justify-content-center">
           <Card.Title as="h4" className="text-center">{name}</Card.Title>
           <Card.Text as="p" className="text-center">
             {description}
@@ -46,7 +46,6 @@ function CatalogItem(props) {
             Bs.
             {' '}
             {price}
-
           </Card.Text>
         </Card.Body>
       </Card>

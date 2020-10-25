@@ -114,10 +114,10 @@ function Modal() {
             : (
               <Container fluid>
                 <Row>
-                  <Col className="justify-content-center p-0" xs={12} md={5} lg={4}>
-                    <Image src={image} />
+                  <Col className="d-flex justify-content-center p-0" lg="auto">
+                    <Image fluid src={image} style={{ maxWidth: 225 }} />
                   </Col>
-                  <Col className="justify-content-center mt-3 mt-md-0 pl-md-5" xs={12} md={7} lg={8}>
+                  <Col className="d-flex flew-column justify-content-center mt-3 mt-lg-0 justify-content-lg-start" lg={8}>
                     <Row>
                       <Col>
                         <h1>{name}</h1>
