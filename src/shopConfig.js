@@ -16,10 +16,19 @@ export default {
 
     photo1: 'https://www.victorromero.com.br/wp-content/uploads/2019/03/image-placeholder-350x350.png',
     photo2: 'https://www.victorromero.com.br/wp-content/uploads/2019/03/image-placeholder-350x350.png',
+
   },
 
   add_endpoint: 'http://lapalabra.free.fr/api/articles/',
   contact_endpoint: 'http://lapalabra.free.fr/api/contact_test/',
   update_endpoint: 'http://lapalabra.free.fr/api/articles/',
-
+  facebook_url: 'https://facebook.com',
+  twitter_url: 'https://twitter.com',
+  day1: 'Dia 1',
+  day2: 'Dia 2',
+  hour1: 'Hora 1',
+  hour2: 'Hora 2',
+  day3: 'Dia 3',
+  hour3: 'Hora 3',
+  hour4: 'Hora 4',
 };

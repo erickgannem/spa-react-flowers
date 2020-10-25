@@ -6,10 +6,10 @@ import { FaMapMarkerAlt, FaFacebookSquare, FaTwitterSquare } from 'react-icons/f
 import './index.css';
 
 import { Container, Col, Row } from 'react-bootstrap';
+import shopConfig from '../../shopConfig';
 
 function Footer({ config }) {
   const { phone, email, address } = config;
-
   return (
     <Container className="app-footer py-3" fluid>
       <Row>
@@ -39,21 +39,43 @@ function Footer({ config }) {
         <Col className="d-flex flex-column align-items-center justify-content-md-start align-items-md-end" xs={12} md={4} lg={4}>
           <h4>Horarios</h4>
           <span>
-            Lunes a Viernes:
+            {shopConfig.day1}
             {' '}
-            <b>07:00 - 18:00</b>
+            a
+            {' '}
+            {shopConfig.day2}
+            :
+            {' '}
+            <b>
+              {shopConfig.hour1}
+              {' '}
+              -
+              {' '}
+              {shopConfig.hour2}
+            </b>
           </span>
           <span>
-            Sabado:
+            {shopConfig.day3}
+            :
             {' '}
-            <b>08:00 - 12:00</b>
+            <b>
+              {shopConfig.hour3}
+              {' '}
+              -
+              {' '}
+              {shopConfig.hour4}
+            </b>
           </span>
           <Row className="mt-4">
             <Col className="d-flex flex-column">
               <h4>Nuestras redes</h4>
               <div className="d-flex justify-content-center justify-content-md-end">
-                <FaFacebookSquare size={32} />
-                <FaTwitterSquare size={32} />
+                <a className="footer-link" href={shopConfig.facebook_url}>
+                  <FaFacebookSquare size={32} />
+                </a>
+                <a className="footer-link" href={shopConfig.twitter_url}>
+                  <FaTwitterSquare size={32} />
+                </a>
 
               </div>
             </Col>

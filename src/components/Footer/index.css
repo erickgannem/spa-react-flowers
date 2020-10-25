@@ -2,3 +2,12 @@
   background-color: #32373d;
   color: #eee;
 }
+
+.footer-link {
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.footer-link:hover {
+  color:rgba(92, 203, 255, 0.925)
+}
