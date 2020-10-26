@@ -42,7 +42,7 @@ function SignIn() {
         <Col lg="auto" sm="auto" xs="auto">
           {
             (errorState.error && errorState.error.signIn) && (
-            <Alert variant="danger" className="text-center">
+            <Alert variant="danger" className="text-center mt-5">
               {errorState.error.signIn.message}
             </Alert>
             )
