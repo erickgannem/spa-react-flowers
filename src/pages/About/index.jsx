@@ -22,7 +22,7 @@ function About() {
     videoId, description1, description2, description3, photo1, photo2,
   } = config.aboutPage;
   return (
-    <Container fluid className="d-flex flex-column justify-content-start my-5 px-5">
+    <Container fluid className="d-flex flex-column justify-content-start my-5 paddingx-5">
       <Row className="video-section">
         <Col className="embed-responsive embed-responsive-4by3">
           <YouTube videoId={videoId} opts={opts} className="embed-responsive-item" />

@@ -11,7 +11,7 @@ import shopConfig from '../../shopConfig';
 function Footer({ config }) {
   const { phone, email, address } = config;
   return (
-    <Container className="app-footer py-3" fluid>
+    <Container className="app-footer py-3 px-4" fluid>
       <Row>
         <Col className="d-flex flex-column align-items-center justify-content-md-start align-items-md-start mb-4" xs={12} md={4} lg={4}>
           <h4>Contáctanos</h4>
